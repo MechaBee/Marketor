@@ -1,1 +1,0 @@
-Move campaigns that are no longer worked on into this directory.

@@ -1,1 +1,0 @@
-This is a default workspace. It was created empty by the default scaffolding process. Let the user know how they can develop new content.
