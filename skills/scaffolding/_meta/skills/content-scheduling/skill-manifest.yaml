@@ -1,0 +1,154 @@
+# Content Scheduling Skill Manifest
+
+skill_id: content-scheduling
+version: "1.0"
+status: active
+
+description: |
+  Manage content post scheduling, publishing, and calendar maintenance
+  across campaigns and platforms.
+
+capabilities:
+  initialize_calendar:
+    description: Initialize a new content posting calendar for a campaign
+    instruction_file: capabilities/initialize-calendar.md
+    required_params:
+      - campaign
+    optional_params: []
+    trigger_patterns:
+      - "setup campaign calendar"
+      - "initialize campaign calendar"
+
+  schedule_post:
+    description: Add a content post to the campaign calendar with scheduling metadata
+    instruction_file: capabilities/schedule-post.md
+    required_params:
+      - content_file_path
+      - platform
+      - format
+      - scheduled_date
+      - scheduled_time
+    optional_params:
+      - timezone
+      - media_files
+    trigger_patterns:
+      - "schedule.*post"
+      - "add.*to.*calendar"
+      - "plan.*post.*for"
+    
+  list_posts:
+    description: Query and list scheduled posts with optional filtering
+    instruction_file: capabilities/list-posts.md
+    required_params: []
+    optional_params:
+      - date_range
+      - platform
+      - campaign_id
+      - status
+      - month_folder
+    trigger_patterns:
+      - "show.*scheduled"
+      - "list.*calendar"
+      - "what.*scheduled"
+      - "upcoming.*posts"
+    
+  review_drafts:
+    description: Discover unscheduled content and guide interactive scheduling process
+    instruction_file: capabilities/review-drafts.md
+    required_params: []
+    optional_params:
+      - campaign_id
+    trigger_patterns:
+      - "schedule.*posts"
+      - "ready.*to.*schedule"
+      - "what.*unscheduled"
+      - "schedule.*campaign"
+      - "review.*unscheduled"
+    
+  mark_published:
+    description: Mark a scheduled post as published and move to published history
+    instruction_file: capabilities/mark-published.md
+    required_params:
+      - content_file_path
+      - published_date
+    optional_params:
+      - platform_post_id
+      - platform_url
+    trigger_patterns:
+      - "publish.*post"
+      - "mark.*published"
+      - "post.*went.*live"
+    note: "Auto-detects campaign vs regular-social from content_file_path"
+    
+  validate_schedule:
+    description: Validate calendar integrity and check for errors or conflicts
+    instruction_file: capabilities/validate-schedule.md
+    required_params: []
+    optional_params:
+      - campaign_id
+    trigger_patterns:
+      - "validate.*calendar"
+      - "check.*calendar"
+      - "calendar.*errors"
+
+required_tools:
+  - workspace_read_operations
+  - workspace_write_operations
+
+optional_tools:
+  - upload_to_google_drive
+  - share_google_drive_items
+
+workspace_paths:
+  master_calendar: "/calendar/master-calendar.yaml"
+  campaign_calendars: "/campaigns/*/calendar.yaml"
+  regular_social_calendar: "/regular-social/calendar.yaml"
+  path_patterns:
+    campaign_content: "campaigns/*/content-assets/**"
+    regular_social_content: "regular-social/[YYYY-M##]/**"
+    regular_social_evergreen: "regular-social/evergreen/**"
+
+validation_rules:
+  date_format: "YYYY-MM-DD"
+  time_format: "HH:MM (24-hour)"
+  default_timezone: "Europe/Budapest"
+  supported_calendar_types:
+    - campaign
+    - regular
+  month_folder_format: "YYYY-M## or 'evergreen'"
+  supported_platforms:
+    - facebook
+    - instagram
+    - google
+    - linkedin
+  supported_formats:
+    facebook:
+      - fb-link-post
+      - fb-text-post
+      - fb-short-video
+    instagram:
+      - ig-reel
+      - ig-carousel
+      - ig-story
+      - ig-image-post
+    google:
+      - g-search
+      - g-display
+      - g-pmax
+      - g-discovery
+    linkedin:
+      - li-post
+      - li-article
+  post_statuses:
+    - draft
+    - scheduled
+    - published
+    - failed
+
+integration_notes: |
+  Regular-Social Calendar Support:
+  - Regular-social calendar created by brand-onboarding skill's scaffold_regular_social
+  - Registered in master calendar with type: regular
+  - Content organized by month folders (2025-M11, 2025-M12) and evergreen
+  - Scheduling capabilities auto-detect regular-social paths
+  - month_folder field included in regular-social calendar entries for filtering

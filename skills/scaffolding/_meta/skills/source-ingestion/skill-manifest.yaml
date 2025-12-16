@@ -1,0 +1,46 @@
+# Source Ingestion Skill Manifest
+
+skill_id: source-ingestion
+version: "1.0"
+status: beta
+
+description: |
+  Ingest and summarize external URLs, documents, and web content
+  into workspace knowledge files. Transforms external information
+  into reusable campaign knowledge.
+
+capabilities:
+  summarize_external_source:
+    description: Ingest and summarize external URLs or documents into workspace knowledge.
+    instruction_file: capabilities/summarize-external-source.md
+    required_params:
+      - source_url
+      - target_path
+    optional_params:
+      - summary_style
+      - sections_of_interest
+    trigger_patterns:
+      - "summarize.*url"
+      - "ingest.*article"
+      - "capture.*website.*info"
+      - "add.*source.*to.*knowledge"
+
+required_tools:
+  - workspace_read_operations
+  - workspace_write_operations
+
+optional_tools:
+  - system_guides_read_operations
+  - web_ingest_operations
+
+workspace_paths:
+  knowledge_root: "/campaigns/[campaign-name]/knowledge/"
+  general_knowledge: "/knowledge/"
+
+validation_rules:
+  output_format: "markdown"
+  required_sections:
+    - source_url
+    - summary
+    - key_points
+

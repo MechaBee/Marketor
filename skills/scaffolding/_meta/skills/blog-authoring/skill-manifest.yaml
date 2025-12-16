@@ -1,0 +1,101 @@
+# Blog Authoring Skill Manifest
+
+skill_id: blog-authoring
+version: "0.2"
+status: beta
+
+description: |
+  Produce long-form marketing articles that align with campaign goals,
+  SEO intent, and workspace publishing conventions. Guides outline planning,
+  sub-agent orchestration, and validation for blog-ready drafts.
+  Also supports blog ideation and angle generation from source materials.
+
+capabilities:
+  generate_blog_post:
+    description: Draft a structured blog article using campaign knowledge, policies, and SEO guidance.
+    instruction_file: capabilities/generate-blog-post.md
+    required_params:
+      - workspace_id
+      - campaign_name
+      - topic_slug
+      - publisher_domain
+    optional_params:
+      - context_slug
+      - revision_number
+      - source_filepaths
+      - source_urls
+      - target_audience
+      - objective
+      - seo_keywords
+      - tone
+      - cta_url
+      - additional_instructions
+      - outline_notes
+      - hero_asset_requirements
+    trigger_patterns:
+      - "create.*blog.*post"
+      - "generate.*blog.*article"
+      - "write.*blog.*about"
+      - "draft.*longform"
+
+  generate_ideas:
+    description: Generate creative blog article angle ideas from product/service documentation or web sources.
+    instruction_file: capabilities/generate-ideas.md
+    required_params:
+      - workspace_id
+    optional_params:
+      - source_filepath
+      - source_url
+      - output_filepath
+      - target_audience
+      - content_goals
+      - number_of_ideas
+    trigger_patterns:
+      - "generate.*blog.*ideas"
+      - "blog.*angle.*ideas"
+      - "blog.*topic.*suggestions"
+      - "ideate.*blog.*content"
+
+required_tools:
+  - workspace_read_operations
+  - workspace_write_operations
+
+optional_tools:
+  - system_guides_read_operations
+  - web_ingest_operations
+
+required_sub_agents:
+  - blog_content_author handles blog content authoring
+  - content_processor handles content transformation and ideation
+
+workspace_paths:
+  policies: "/policies/digital-marketing-plan.md"
+  blog_authoring_guides: "/policies/blog-*-authoring-guide.md"
+  blog_outline_guides: "/policies/blog-*-outline-guide.md"
+  campaign_knowledge: "/campaigns/[campaign-name]/knowledge/"
+  blog_output_root: "/campaigns/[campaign-name]/content-assets/blog/[publisher-domain]/blog-post/"
+  idea_generation_output: "/knowledge/[topic-area]/" or "/campaigns/[campaign-name]/knowledge/"
+
+validation_rules:
+  file_naming_pattern: "text_[topic-slug]_[context-slug]_rev[n].md"
+  metadata_format: "markdown_section"
+  metadata_section_title: "## Post metadata"
+  channel: "blog"
+  format: "blog-post"
+  required_metadata_section_fields:
+    - Platform
+    - Format
+    - Topic
+    - Context
+    - Target Audience
+    - Created
+    - Status
+  optional_metadata_section_fields:
+    - Objective
+    - Revision
+    - CTA URL
+    - SEO Keywords
+    - Associated Media
+  word_count_range:
+    min: 800
+    max: 1600

@@ -1,0 +1,88 @@
+# Brand Onboarding Skill Manifest
+
+skill_id: brand-onboarding
+version: "2.0"
+status: active
+
+description: |
+  Complete brand workspace setup including directory structure, deep brand
+  research, marketing plan generation, and regular social scaffolding.
+  Establishes a campaign-ready foundation in a single guided workflow.
+
+capabilities:
+  setup_brand_workspace:
+    description: |
+      Complete workspace setup including directory structure, deep brand
+      research (cca 1USD), brand objectives gathering, and readiness validation.
+      Combines workspace creation, vendor intelligence, and onboarding.
+    instruction_file: capabilities/setup-brand-workspace.md
+    required_params:
+      - workspace_name
+      - brand_name
+      - source_url
+    optional_params:
+      - research_output_path
+    trigger_patterns:
+      - "setup.*workspace"
+      - "create.*workspace.*for"
+      - "onboard.*brand"
+      - "setup.*brand"
+      - "initialize.*workspace"
+      - "new.*workspace.*for"
+    cost_warning: "Deep research operation costs cca 1USD"
+
+  create_marketing_plan:
+    description: |
+      Generate comprehensive digital marketing strategy document covering
+      platform-specific formats, strategic principles, and campaign guidance.
+      Best used after setup_brand_workspace completes.
+    instruction_file: capabilities/create-marketing-plan.md
+    required_params: []
+    optional_params:
+      - focus_platforms
+    trigger_patterns:
+      - "create.*marketing.*plan"
+      - "generate.*marketing.*strategy"
+      - "develop.*digital.*strategy"
+      - "marketing.*plan"
+
+  scaffold_regular_social:
+    description: Initialize sparse regular social content structure with monthly folders.
+    instruction_file: capabilities/scaffold-regular-social.md
+    required_params: []
+    optional_params:
+      - months_ahead
+      - include_readme
+    trigger_patterns:
+      - "setup.*regular.*social"
+      - "scaffold.*regular.*content"
+      - "initialize.*regular.*posts"
+
+required_tools:
+  - create_workspace_operations
+  - workspace_read_operations
+  - workspace_write_operations
+  - openai_deep_research
+
+optional_tools:
+  - system_guides_read_operations
+
+workspace_paths:
+  vendor_research: "/knowledge/brand-research.md"
+  marketing_plan: "/policies/digital-marketing-plan.md"
+  campaign_ideas: "/campaign-ideas/*"
+  campaigns: "/campaigns/*"
+  regular_social_calendar: "/regular-social/calendar.yaml"
+
+validation_rules:
+  require_workspace_confirmation: true
+  require_cost_confirmation: true  # For deep research operations
+  require_user_confirmation_before_writes: true
+  recommend_dedicated_workspaces: true  # One workspace per brand
+
+workflow_notes: |
+  Standard 2-step workflow:
+  1. setup_brand_workspace (creates foundation with research)
+  2. create_marketing_plan (generates strategy document)
+
+  Result: Campaign-ready workspace with intelligence and strategic guidance.

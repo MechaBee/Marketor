@@ -1,0 +1,65 @@
+# Image Generation Skill Manifest
+
+skill_id: image-generation
+version: "1.0"
+status: beta
+
+description: |
+  Generate AI images with optimized prompts and save them with
+  documentation to workspace. Also supports creating reusable
+  brand-level image generation guidelines.
+
+capabilities:
+  generate_image:
+    description: Generate AI images with optimized prompts and save them with documentation to workspace.
+    instruction_file: capabilities/generate-image.md
+    required_params:
+      - workspace_id
+    optional_params:
+      - content_file_path
+      - target_folder_path
+      - aspect_ratio
+      - person_generation
+      - art_style
+      - image_concept
+    trigger_patterns:
+      - "generate.*image"
+      - "create.*image"
+      - "need.*image.*for"
+      - "make.*image"
+      - "add.*image"
+
+  generate_brand_guidelines:
+    description: Generate and maintain brand visual guidelines for image generation.
+    instruction_file: capabilities/generate-brand-guidelines.md
+    required_params:
+      - workspace_id
+      - brand_name
+    optional_params: []
+    trigger_patterns:
+      - "generate.*brand.*guidelines"
+      - "create.*brand.*guidelines"
+      - "brand.*visual.*guidelines"
+      - "image.*generation.*guidelines"
+      - "visual.*identity.*guidelines"
+
+required_tools:
+  - workspace_read_operations
+  - workspace_write_operations
+  - generate_image_google_ai
+
+optional_tools:
+  - system_guides_read_operations
+
+useful_sub_agents: [content_processor]
+
+workspace_paths:
+  media_guides: "/policies/media-generation/*.md"
+  campaign_assets: "/campaigns/[campaign-name]/content-assets/"
+
+validation_rules:
+  image_prompt_max_length: 2500
+  prompt_file_naming: "[image-filename]-prompt.md"
+  image_file_naming: "image_[topic-slug]_[context-slug]_rev[n].png"
+  media_folder_location: "media/"
+

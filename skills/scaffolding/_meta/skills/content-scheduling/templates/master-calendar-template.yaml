@@ -1,0 +1,30 @@
+# Master Calendar Manifest (Template)
+# Copy this template to: /calendar/master-calendar.yaml
+#
+# Purpose:
+# - Workspace index of all calendar files (campaigns + regular-social)
+# - Used by scheduling/validation workflows to discover calendars
+#
+# Conventions:
+# - calendar_file values are workspace-relative paths
+# - For campaign calendars, campaign_id should match the folder name under /campaigns/
+# - status: active | paused | completed
+# - type: regular | campaign
+
+calendar_version: "1.0"
+last_updated: "[CURRENT_DATE]" # YYYY-MM-DD (update when you change this manifest)
+
+# List of campaigns with their calendar file references (workspace-relative paths)
+campaigns: []
+
+# Example entries (uncomment and edit):
+#
+# - campaign_id: regular-social
+#   calendar_file: regular-social/calendar.yaml
+#   status: active # active | paused | completed
+#   type: regular # regular | campaign
+#
+# - campaign_id: my-campaign
+#   calendar_file: campaigns/my-campaign/calendar.yaml
+#   status: active # active | paused | completed
+#   type: campaign

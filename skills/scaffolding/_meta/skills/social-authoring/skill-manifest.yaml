@@ -1,0 +1,116 @@
+# Content Authoring Skill Manifest
+skill_id: social-authoring
+version: "1.0"
+status: active
+
+description: |
+  Generate social media content for Facebook, Instagram, Google, and LinkedIn platforms.
+  Produces standardized markdown files and platform-specific structured
+  content following marketing best practices.
+
+capabilities:
+  create_social_post:
+    description: Generate social media content with standardized format and metadata
+    instruction_file: capabilities/create-social-post.md
+    required_params:
+      - workspace_id
+      - campaign_name
+      - topic_slug
+      - platform
+      - format
+    optional_params:
+      - context_slug
+      - revision_number
+      - source_filepaths
+      - source_urls
+      - target_audience
+      - objective
+      - cta_url
+      - hashtags
+      - additional_instructions
+      - auto_validate
+    trigger_patterns:
+      - "create.*social.*post"
+      - "generate.*social.*content"
+      - "write.*[platform].*post"
+      - "new.*social.*content"
+    post_creation_hooks:
+      - validate_social_posts
+
+  validate_social_posts:
+    description: Validate and fix social post format compliance across campaign
+    instruction_file: capabilities/validate-social-posts.md
+    required_params:
+      - workspace_id
+      - scope_type
+      - scope_value
+    optional_params:
+      - auto_fix
+    trigger_patterns:
+      - "validate campaign.*"
+      - "validate file.*"
+      - "validate.*social.*post.*"
+      - "check.*social.*format"
+      - "fix.*social.*format"
+
+required_tools:
+  - workspace_read_operations
+  - workspace_write_operations
+
+useful_sub_agents:
+  - content_processor is required for authoring
+
+optional_tools:
+  - generate_image_google_ai
+  - upload_to_google_drive
+  - system_guides_read_operations
+
+workspace_paths:
+  policies: "/policies/digital-marketing-plan.md"
+  content_assets: "/campaigns/[campaign-name]/content-assets/[channel]/[publisher]/[format]/"
+  knowledge: "/campaigns/[campaign-name]/knowledge/"
+  content_template: "/_meta/skills/social-authoring/templates/social-post-template.md"
+
+validation_rules:
+  file_naming_pattern: "text_[topic-slug]_[context-slug]_rev[n].md"
+  supported_platforms:
+    - facebook
+    - instagram
+    - google
+    - linkedin
+  supported_formats:
+    meta:
+      - fb-link-post
+      - fb-text-post
+      - fb-short-video
+      - ig-reel
+      - ig-carousel
+      - ig-story
+      - ig-image-post
+    google:
+      - g-search
+      - g-display
+      - g-pmax
+      - g-discovery
+    linkedin:
+      - li-post
+      - li-article
+  objectives:
+    - awareness
+    - engagement
+    - conversion
+    - traffic
+  metadata_format: "markdown_section"
+  metadata_section_title: "## Post metadata"
+  required_metadata_section_fields:
+    - platform
+    - format
+    - created_date
+    - author
+    - target_audience
+    - objective
+  optional_metadata_section_fields:
+    - last_modified
+    - cta_url
+    - hashtags
+    - associated_media

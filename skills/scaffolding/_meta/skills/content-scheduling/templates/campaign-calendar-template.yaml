@@ -1,0 +1,33 @@
+# Marketor Campaign Calendar Template
+# Copy this template to: campaigns/[campaign-name]/calendar.yaml
+# Replace [campaign-name] with your actual campaign folder name
+
+campaign_id: [campaign-name]
+status: active  # active | paused | completed
+
+# Scheduled posts - posts that are planned or ready to publish
+# Key: workspace-relative path to the content file
+scheduled_posts:
+  # Example entry, note that the entry key is relative to the campaign path:
+  # content-assets/social/meta/fb-link-post/text_example_rev1.md:
+  #   media_files:  # Optional - list of associated media files RELATIVE to the post file
+  #     - content-assets/social/meta/fb-link-post/media/image_example_rev1.png
+  #   platform: facebook  # facebook | instagram | google | linkedin
+  #   format: fb-link-post  # Platform-specific format (fb-link-post, ig-reel, g-search, etc.)
+  #   scheduled_date: "2025-11-01"  # YYYY-MM-DD
+  #   scheduled_time: "10:00"  # HH:MM (24-hour format)
+  #   timezone: "Europe/Budapest"  # IANA timezone identifier
+  #   status: draft  # draft | scheduled | published | failed
+
+  # Add your scheduled posts here:
+
+# Published posts - posts that have been successfully published
+# Key: workspace-relative path to the content file
+published_posts:
+  # Example entry:
+  # content-assets/social/meta/fb-link-post/text_example_rev1.md:
+  #   published_date: "2025-10-20T10:00:00Z"  # ISO 8601 format with timezone
+  #   platform_post_id: "fb_123456789"  # Platform-assigned post ID
+  #   platform_url: "https://facebook.com/posts/123456789"  # Optional - direct link to post
+
+  # Add your published posts here:

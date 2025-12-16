@@ -1,0 +1,99 @@
+# Skills Registry
+# Master registry of all available skills in the workspace
+
+registry_version: "2.0"
+last_updated: "2025-12-13"
+
+skills:
+  # === WORKSPACE LIFECYCLE ===
+  - skill_id: brand-onboarding
+    skill_path: _meta/skills/brand-onboarding
+    manifest_file: _meta/skills/brand-onboarding/skill-manifest.yaml
+    version: "2.0"
+    status: active  # active | beta | deprecated
+    category: workspace
+    description: |
+      Complete brand workspace setup including directory structure, deep brand
+      research, marketing plan generation, and regular social scaffolding.
+
+  # === CONTENT AUTHORING ===
+  - skill_id: social-authoring
+    skill_path: _meta/skills/social-authoring
+    manifest_file: _meta/skills/social-authoring/skill-manifest.yaml
+    version: "1.0"
+    status: active
+    category: content
+    description: |
+      Generate social media content for Facebook, Instagram, Google, and LinkedIn platforms.
+      Produces standardized markdown files and platform-specific
+      structured content following marketing best practices.
+
+  - skill_id: blog-authoring
+    skill_path: _meta/skills/blog-authoring
+    manifest_file: _meta/skills/blog-authoring/skill-manifest.yaml
+    version: "0.2"
+    status: beta
+    category: content
+    description: |
+      Produce long-form marketing articles by combining campaign knowledge,
+      policy guidance, and the blog_content_author sub-agent to deliver
+      SEO-aligned drafts.
+
+  - skill_id: landing-page-authoring
+    skill_path: _meta/skills/landing-page-authoring
+    manifest_file: _meta/skills/landing-page-authoring/skill-manifest.yaml
+    version: "1.0"
+    status: beta
+    category: content
+    description: |
+      Generate and manage standalone product and service landing pages as markdown content.
+      Creates conversion-optimized copy following page authoring best practices, with support
+      for modular sections, revisions, and A/B testing variations.
+
+  # === ASSET GENERATION ===
+  - skill_id: image-generation
+    skill_path: _meta/skills/image-generation
+    manifest_file: _meta/skills/image-generation/skill-manifest.yaml
+    version: "1.0"
+    status: beta
+    category: assets
+    description: |
+      Generate AI images with optimized prompts and documentation.
+
+  # === KNOWLEDGE MANAGEMENT ===
+  - skill_id: source-ingestion
+    skill_path: _meta/skills/source-ingestion
+    manifest_file: _meta/skills/source-ingestion/skill-manifest.yaml
+    version: "1.0"
+    status: beta
+    category: knowledge
+    description: |
+      Ingest and summarize external URLs and documents into workspace knowledge.
+
+  # === CAMPAIGN OPERATIONS ===
+  - skill_id: campaign-management
+    skill_path: _meta/skills/campaign-management
+    manifest_file: _meta/skills/campaign-management/skill-manifest.yaml
+    version: "1.0"
+    status: beta
+    category: campaigns
+    description: |
+      Manage complete campaign lifecycle from idea registration to campaign creation,
+      scaffolding, and summary maintenance. Provides systematic operations for organizing
+      marketing campaigns with proper folder structures, metadata tracking, and documentation.
+
+  - skill_id: content-scheduling
+    skill_path: _meta/skills/content-scheduling
+    manifest_file: _meta/skills/content-scheduling/skill-manifest.yaml
+    version: "1.0"
+    status: active
+    category: campaigns
+    description: |
+      Manage content post scheduling, publishing, and calendar maintenance
+      across campaigns and platforms.
+
+
+# Skill Lifecycle States:
+# - active: Fully operational and recommended for use
+# - beta: Under development, may have limitations
+# - deprecated: No longer maintained, use alternatives

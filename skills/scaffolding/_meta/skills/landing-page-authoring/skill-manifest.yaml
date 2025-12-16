@@ -1,0 +1,98 @@
+# Landing Page Authoring Skill Manifest
+
+skill_id: landing-page-authoring
+version: "1.0"
+status: beta
+
+description: |
+  Generate and manage standalone product and service landing pages as markdown content.
+  Focuses on conversion-optimized copy following page authoring best practices, with
+  support for modular sections, revisions, and A/B testing variations.
+
+capabilities:
+  create_landing_page:
+    description: Generate new landing page from template with conversion-focused sections
+    instruction_file: capabilities/create-landing-page.md
+    required_params:
+      - page_slug
+      - page_type
+    optional_params:
+      - template_name
+      - page_title
+      - target_keywords
+      - target_audience
+      - primary_cta_url
+      - secondary_cta_url
+      - custom_sections
+    trigger_patterns:
+      - "create.*landing.*page"
+      - "generate.*product.*page"
+      - "new.*landing.*page"
+      - "build.*landing.*page"
+
+  update_landing_page_section:
+    description: Modify or optimize specific section of existing landing page
+    instruction_file: capabilities/update-landing-page-section.md
+    required_params:
+      - page_slug
+      - section_name
+    optional_params:
+      - new_content
+      - optimization_focus
+      - apply_best_practices
+    trigger_patterns:
+      - "update.*landing.*page.*section"
+      - "modify.*page.*section"
+      - "optimize.*section"
+      - "improve.*landing.*page"
+
+  list_landing_pages:
+    description: Show all landing pages in workspace with metadata
+    instruction_file: capabilities/list-landing-pages.md
+    required_params: []
+    optional_params:
+      - filter_by_type
+      - filter_by_status
+    trigger_patterns:
+      - "list.*landing.*pages"
+      - "show.*landing.*pages"
+      - "what.*landing.*pages"
+
+required_tools:
+  - workspace_read_operations
+  - workspace_write_operations
+
+optional_tools:
+  - system_guides_read_operations
+
+workspace_paths:
+  landing_pages_root: "/landing-pages/"
+  landing_page_path: "/landing-pages/[page-slug]/"
+  sections_path: "/landing-pages/[page-slug]/sections/"
+  best_practices_guide: "best-practices/content/page-authoring/"
+
+validation_rules:
+  page_slug_format: "kebab-case (lowercase, hyphens)"
+  page_types:
+    - product
+    - service
+    - custom
+  status_values:
+    - draft
+    - review
+    - published
+  standard_sections:
+    - hero
+    - benefits
+    - features
+    - social-proof
+    - how-it-works
+    - cta
+  required_metadata_fields:
+    - page_type
+    - created_date
+    - status
+  file_naming:
+    full_page: "full-page_rev[n].md"
+    section: "[section-name].md"
+    metadata: "metadata.yaml"

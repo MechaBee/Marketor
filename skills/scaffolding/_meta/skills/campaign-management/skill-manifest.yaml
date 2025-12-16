@@ -1,0 +1,114 @@
+# Campaign Management Skill Manifest
+
+skill_id: campaign-management
+version: "1.0"
+status: beta
+
+description: |
+  Manage the complete campaign lifecycle from idea registration to campaign creation,
+  scaffolding, and summary maintenance. Provides systematic operations for organizing
+  marketing campaigns with proper folder structures, metadata tracking, and slug
+  management following platform conventions.
+
+capabilities:
+  create_idea:
+    description: Capture and document new campaign ideas in the campaign-ideas folder
+    instruction_file: capabilities/create-idea.md
+    required_params:
+      - campaign_idea_name
+      - campaign_description
+    optional_params:
+      - target_audience
+      - key_messages
+      - potential_angles
+      - status_notes
+    trigger_patterns:
+      - "register.*campaign.*idea"
+      - "create.*idea.*for.*campaign"
+      - "new.*campaign.*idea"
+      - "capture.*campaign.*concept"
+
+  create_campaign:
+    description: Scaffold complete campaign structure from an idea with folders and summary
+    instruction_file: capabilities/create-campaign.md
+    required_params:
+      - idea_name_or_description
+    optional_params:
+      - campaign_slug
+      - skip_idea_file
+    trigger_patterns:
+      - "create.*campaign"
+      - "scaffold.*campaign"
+      - "setup.*campaign"
+      - "implement.*campaign.*from.*idea"
+      - "build.*campaign.*structure"
+
+  update_summary:
+    description: Maintain and update campaign summary.md file with new content and status changes
+    instruction_file: capabilities/update-summary.md
+    required_params:
+      - campaign_name
+      - update_type
+    optional_params:
+      - content_file_path
+      - content_title
+      - content_description
+      - status_change
+      - new_slugs
+      - new_keywords
+      - notes
+    trigger_patterns:
+      - "update.*campaign.*summary"
+      - "add.*to.*summary"
+      - "update.*summary.*for"
+      - "maintain.*campaign.*summary"
+
+required_tools:
+  - workspace_read_operations
+  - workspace_write_operations
+
+optional_tools:
+  - system_guides_read_operations
+
+workspace_paths:
+  campaign_ideas: "/campaign-ideas/"
+  campaigns: "/campaigns/"
+  campaign_summary_template: "/policies/campaign-summary-template.md"
+  campaign_summary_maintenance_guide: "/policies/campaign-summary-maintenance-guide.md"
+  campaign_structure_template: |
+    /campaigns/[campaign-name]/
+      ├── summary.md
+      ├── knowledge/
+      ├── content-assets/
+      │   ├── social/
+      │   │   ├── meta/
+      │   │   └── google/
+      │   └── blog/
+      ├── topic-strategies/
+      └── prompts/
+
+validation_rules:
+  idea_file_naming: "idea-[campaign-name].md"
+  campaign_folder_naming: "[base-name]" or "[base-name]-[slug]"
+  summary_file_name: "summary.md"
+  summary_required_sections:
+    - "Kampány Metaadatok"
+    - "Kampány Áttekintés"
+    - "Célcsoport"
+    - "Fő Üzenetek"
+    - "Slug Registry"
+    - "Létrehozott Tartalmak"
+    - "Kampány Teljesítmény/Státusz"
+    - "Kulcsszavak"
+    - "Megjegyzések"
+  campaign_status_values:
+    - planning
+    - content-creation
+    - review
+    - active
+    - completed
+    - archived
+  slug_types:
+    topic_slug: "Main subject identifier"
+    context_slug: "Specific angle/timing/variation"
+    format_slug: "Platform/format specific"
