@@ -1,4 +1,4 @@
-# Marketor
+# Marketor - The Vibe Marketing Platform
 
 The Marketing skillset used by [mechabee.com/marketor/](https://mechabee.com/marketor)
 
