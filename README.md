@@ -27,14 +27,14 @@ This allows you to customize the basuc Marketing AI Agent workflows however you 
 
 ## Approaches to customization
 
-### Use MechaBee itself to customize
+### Use MechaBee itself to customize it's own skills
 Once you find a workflow that works for you, you can easily prompt the agent to save and add a new capability to an existing skillset or create and register a new skill. Then:
 1. simply copy / paste the created skill files to a locally checked out repo
 2. update the checked out files / add new files as required
 3. zip the skills directory (with the skills folder included)
 3. upload your skill zip bundle
 
-### Use a coding agent to develop new skills
+### Use a coding agent like Claude Code or Codex to develop new skills
 TBD
 
 
