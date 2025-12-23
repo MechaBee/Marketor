@@ -1,7 +1,7 @@
 # Blog Authoring Skill Manifest
 
 skill_id: blog-authoring
-version: "0.2"
+version: "0.3"
 status: beta
 
 description: |
@@ -9,6 +9,7 @@ description: |
   SEO intent, and workspace publishing conventions. Guides outline planning,
   sub-agent orchestration, and validation for blog-ready drafts.
   Also supports blog ideation and angle generation from source materials.
+  Includes cornerstone/pillar content workflow for comprehensive multi-source articles.
 
 capabilities:
   generate_blog_post:
@@ -38,6 +39,37 @@ capabilities:
       - "write.*blog.*about"
       - "draft.*longform"
 
+  generate_cornerstone_post:
+    description: Create comprehensive cornerstone/pillar content (3,500-5,000+ words) using two-phase workflow (planning → generation) that synthesizes multiple knowledge sources.
+    instruction_file: capabilities/generate-cornerstone-post.md
+    required_params:
+      - workspace_id
+      - campaign_name
+      - topic_slug
+      - publisher_domain
+      - source_filepaths
+    optional_params:
+      - source_urls
+      - context_slug
+      - revision_number
+      - chapter_count
+      - target_word_count
+      - target_audience
+      - objective
+      - seo_keywords
+      - tone
+      - cta_url
+      - additional_instructions
+      - hero_asset_requirements
+      - plan_output_path
+    trigger_patterns:
+      - "create.*cornerstone"
+      - "generate.*pillar.*content"
+      - "write.*comprehensive.*guide"
+      - "long.*form.*blog"
+      - "cornerstone.*article"
+      - "cornerstone.*blog"
+
   generate_ideas:
     description: Generate creative blog article angle ideas from product/service documentation or web sources.
     instruction_file: capabilities/generate-ideas.md
@@ -66,7 +98,7 @@ optional_tools:
 
 required_sub_agents:
   - blog_content_author handles blog content authoring
-  - content_processor handles content transformation and ideation
+  - content_processor handles content transformation, ideation, and cornerstone content generation
 
 workspace_paths:
   policies: "/policies/digital-marketing-plan.md"
@@ -74,6 +106,7 @@ workspace_paths:
   blog_outline_guides: "/policies/blog-*-outline-guide.md"
   campaign_knowledge: "/campaigns/[campaign-name]/knowledge/"
   blog_output_root: "/campaigns/[campaign-name]/content-assets/blog/[publisher-domain]/blog-post/"
+  cornerstone_plan_temp: "/campaigns/[campaign-name]/temp/"
   idea_generation_output: "/knowledge/[topic-area]/" or "/campaigns/[campaign-name]/knowledge/"
 
 validation_rules:
@@ -97,5 +130,9 @@ validation_rules:
     - SEO Keywords
     - Associated Media
   word_count_range:
-    min: 800
-    max: 1600
+    standard_blog:
+      min: 800
+      max: 1600
+    cornerstone_blog:
+      min: 3500
+      max: 5000
