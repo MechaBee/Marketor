@@ -2,61 +2,153 @@
 
 ## Table of Contents
 1. [Core Principles](#core-principles)
-2. [Prompt Structure Framework](#prompt-structure-framework)
-3. [Technical Specifications](#technical-specifications)
-4. [Subject Definition](#subject-definition)
-5. [Context and Environment](#context-and-environment)
-6. [Style and Artistic Direction](#style-and-artistic-direction)
-7. [Photography Techniques](#photography-techniques)
-8. [Quality Enhancement Modifiers](#quality-enhancement-modifiers)
-9. [Composition and Framing](#composition-and-framing)
-10. [Text Integration](#text-integration)
-11. [Troubleshooting Common Issues](#troubleshooting-common-issues)
-12. [Advanced Techniques](#advanced-techniques)
+2. [Five-Part Prompt Architecture](#five-part-prompt-architecture)
+3. [Model Selection Guide](#model-selection-guide)
+4. [Technical Specifications](#technical-specifications)
+5. [Subject Definition](#subject-definition)
+6. [Context and Environment](#context-and-environment)
+7. [Style and Artistic Direction](#style-and-artistic-direction)
+8. [Photography Techniques](#photography-techniques)
+9. [Quality Enhancement Modifiers](#quality-enhancement-modifiers)
+10. [Composition and Framing](#composition-and-framing)
+11. [Text Integration](#text-integration)
+12. [Platform-Specific Content](#platform-specific-content)
+13. [Known Limitations and Workarounds](#known-limitations-and-workarounds)
+14. [Iterative Refinement Workflow](#iterative-refinement-workflow)
+15. [Advanced Techniques](#advanced-techniques)
 
 ---
 
 ## Core Principles
 
 ### The Foundation Formula
-Every effective image generation prompt should contain three essential elements:
-- **Subject**: The main focus or primary object
-- **Context**: The environment, setting, or background
-- **Style**: The artistic or photographic approach
+Every effective image generation prompt should contain five essential elements:
+- **Composition**: The framing, angle, and visual perspective
+- **Subject**: The main focus with specific characteristics
+- **Action/State**: What the subject is doing or its condition
+- **Location**: The setting and environmental context
+- **Lighting/Style**: Aesthetic direction and illumination approach
 
 ### Maximum Impact Guidelines
 - **Clarity over complexity**: Be descriptive but focused
 - **Specificity drives quality**: Generic prompts yield generic results
-- **Iteration is key**: Refine prompts based on output quality
+- **One change per iteration**: Refine prompts systematically
+- **Limit edits to 2-3**: Regenerate after multiple changes to prevent drift
+- **Use semantic positives**: Describe what you want, not what to avoid
 
 ---
 
-## Prompt Structure Framework
+## Five-Part Prompt Architecture
 
-### Basic Template
+The most effective prompts follow this modular structure:
+
 ```
-[Camera/Lens] [Subject] in [Context], [Style], [Quality Modifiers], [Additional Details]
+[COMPOSITION] of [SUBJECT], [ACTION], set in [LOCATION].
+The scene features [ENVIRONMENTAL DETAILS] and is illuminated by [LIGHTING].
+Render in [STYLE] with [TECHNICAL SPECIFICATIONS].
 ```
 
-### Progressive Complexity Levels
+### Part 1: Composition
+Defines the framing and visual perspective.
 
-**Level 1 - Essential**
-```
-[Subject] in [basic context], [basic style]
-```
-*Example: "Woman in coffee shop, portrait photography"*
+**Vocabulary:**
+- "A wide-angle landscape shot"
+- "A close-up macro photograph"
+- "A medium shot from shoulder height"
+- "An isometric top-down view"
+- "A split-screen diptych"
+- "Bird's eye view"
+- "Eye-level perspective"
 
-**Level 2 - Enhanced**
-```
-[Camera type] [Subject] in [detailed context], [specific style], [quality modifier]
-```
-*Example: "35mm portrait of woman in vintage coffee shop, film noir style, high-quality"*
+### Part 2: Subject
+The primary object, person, or element with specific characteristics.
 
-**Level 3 - Professional**
+**Examples:**
+- "A professional woman in her 30s with warm smile"
+- "A vintage leather briefcase with brass clasps"
+- "A modern office building facade with glass panels"
+- "A steaming cup of espresso on ceramic saucer"
+
+### Part 3: Action/State
+What the subject is doing or its condition.
+
+**Examples:**
+- "Holding a smartphone, smiling confidently"
+- "Sitting at a wooden desk, typing"
+- "Standing in front of a minimalist white wall"
+- "Displayed on a marble shelf, catching light"
+
+### Part 4: Location/Environment
+The setting and context.
+
+**Examples:**
+- "In a bright, modern office environment"
+- "On a rustic wooden table in a sunlit kitchen"
+- "Against a blurred city skyline at dusk"
+- "In a professional studio with neutral gray walls"
+
+### Part 5: Lighting and Style
+Aesthetic direction, lighting approach, and artistic style.
+
+**Examples:**
+- "Soft, diffused golden-hour sunlight casting gentle shadows"
+- "Professional studio lighting with three-point setup"
+- "High-contrast black and white cinematic lighting"
+- "Flat illustration style with bold colors and thin black outlines"
+
+### Complete Example
+
+**Basic (Level 1):**
 ```
-[Technical specs] [detailed subject] in [rich context], [artistic style], [multiple quality modifiers], [lighting], [mood]
+Woman in coffee shop, portrait photography
 ```
-*Example: "85mm lens portrait of professional woman in 1940s coffee shop interior, film noir cinematography, 4K resolution, dramatic lighting, moody atmosphere"*
+
+**Enhanced (Level 2):**
+```
+A medium shot of a professional woman, holding a latte, set in a vintage café.
+Natural window light, documentary photography style.
+```
+
+**Professional (Level 3):**
+```
+A close-up portrait of a thoughtful middle-aged woman with kind eyes,
+savoring morning coffee, set in a charming rustic vintage café with exposed
+brick walls and large windows. The scene features warm, inviting décor with
+brass accents and is illuminated by soft golden-hour natural light streaming
+through windows, creating gentle shadows. Render in documentary lifestyle
+photography style with 85mm lens, shallow depth of field, film-like color
+grading, 4K resolution. Aspect ratio: 4:5.
+```
+
+---
+
+## Model Selection Guide
+
+### When to Use Flash (Default)
+- High-volume social media content (50+ images/week)
+- Rapid prototyping and iteration
+- Standard social posts (LinkedIn, Facebook, Instagram)
+- Quick turnaround requirements
+- Budget-conscious workflows
+- Speed-critical content calendars
+
+### When to Use Pro
+- Text-heavy graphics (logos, infographics, menus)
+- Client deliverables or final brand assets
+- 2K/4K professional output requirements
+- Complex multi-image composition
+- Brand consistency requiring "thinking mode"
+- Real-time data grounding (when needed)
+
+### Model Comparison
+
+| Feature | Flash | Pro |
+|---------|-------|-----|
+| Speed | ~0.8 sec | Professional speed |
+| Resolution | Up to 1024×1024 | Up to 4K (4096×4096) |
+| Text Rendering | Very Good | Excellent |
+| Max Reference Images | 3 | 14 |
+| Best For | Volume content | Professional assets |
 
 ---
 
@@ -233,27 +325,274 @@ Every effective image generation prompt should contain three essential elements:
 
 ---
 
-## Troubleshooting Common Issues
+## Platform-Specific Content
 
-### Poor Subject Definition
-**Problem**: Vague or unclear main subject
-**Solution**: Add specific descriptive details, age, characteristics, and emotional state
+### LinkedIn Content Strategy
 
-### Inconsistent Style
-**Problem**: Mixed or conflicting style elements
-**Solution**: Choose one primary style and support it with consistent modifiers
+**Platform Specifications:**
+- Optimal Image: 1200×1200px (1:1 square) for maximum reach
+- Carousel: 1200×628px (1.91:1) per card
+- Engagement: Posts with images receive 2.3× engagement; carousels drive 3× higher reach
 
-### Low Quality Output
-**Problem**: Blurry, pixelated, or unprofessional results
-**Solution**: Add quality modifiers, specify technical details, include professional terminology
+**Content Types:**
 
-### Composition Problems
-**Problem**: Poor framing, awkward positioning
-**Solution**: Specify camera angle, shot type, and composition rules
+#### Educational Framework Graphics
+Best for thought leadership and save-worthy content.
+```
+Create a professional infographic presenting a business framework titled
+'[FRAMEWORK NAME].' Layout: [N] horizontal sections stacked, each labeled
+Step 1-[N]. Each section has a section title (bold, navy blue), descriptive
+text (small, gray), and an abstract icon representing the concept.
 
-### Lighting Issues
-**Problem**: Poor or inappropriate lighting
-**Solution**: Explicitly describe lighting type, direction, and quality
+Color scheme: Professional navy blue (#1F3A7F), white background, light blue accents.
+Clean typography (sans-serif, high contrast). Suitable for LinkedIn share.
+The design is clean, scannable, and save-worthy for professionals. 1:1 aspect ratio.
+```
+
+#### Authority/Social Proof Graphics
+Best for testimonials and credibility building.
+```
+Create a professional testimonial card with a luxury aesthetic. Layout:
+- Header area: 5 gold stars aligned left
+- Center: A powerful 1-sentence testimonial in large, bold serif type
+- Footer: Circular profile photo placeholder, client name in bold, title/company in smaller text
+- Background: Soft cream with subtle gradient
+- Border: Thin gold accent line on left edge
+
+Style: Professional, trust-inducing, suitable for B2B LinkedIn context. 1:1 aspect ratio.
+```
+
+#### Pattern-Interrupt Graphics
+Bold statements that stop the scroll.
+```
+Create an eye-catching graphic representing a contrarian business insight.
+Center the graphic with a bold, provocative statement in white text on a
+dark background (deep navy or dark gray). Typography: Large sans-serif font
+(80pt minimum), positioned center-aligned.
+
+Surrounding the text, add abstract visual elements (geometric shapes, graphs,
+arrows) that reinforce the concept without overwhelming the text.
+Color: High contrast (white text on dark background). 1:1 aspect ratio.
+```
+
+### Facebook Content Strategy
+
+**Platform Specifications:**
+- Optimal Image: 1200×1200px (1:1 square)
+- Alternative: 1200×628px (1.91:1) for feed posts
+- Engagement: Images generate 2.3× more engagement than text-only posts
+
+**Content Types:**
+
+#### Community/Lifestyle Imagery
+Best for engagement and relatability.
+```
+Create a warm, inclusive lifestyle photograph of a diverse group of [N] people
+of different ages, ethnicities, and body types [ACTIVITY DESCRIPTION].
+The setting is [ENVIRONMENT] with [LIGHTING DESCRIPTION] creating a warm,
+joyful mood.
+
+Details: [SPECIFIC PROPS/ELEMENTS]. Natural expressions—genuine smiles and
+eye contact. The aesthetic is aspirational but relatable, emphasizing human
+connection and togetherness.
+
+Lighting: Golden-hour sunlight, soft shadows, warm color grade.
+1:1 aspect ratio. Ultra-high-resolution, sharp focus on faces.
+```
+
+#### Product Showcase
+Best for sales and desirability.
+```
+A stunning product photography shot of [PRODUCT]. The product is centered
+on [SURFACE], with subtle styling elements ([PROPS]) arranged artfully around it.
+
+Lighting: Professional studio setup with warm key light from upper left,
+creating dimensional shadows and highlighting premium materials.
+Background: Soft, blurred white with subtle gray shadow.
+
+Style: Clean, luxury, aspirational. Color grading: Warm, slightly desaturated.
+1:1 aspect ratio. Maximum clarity and detail on product surface.
+```
+
+#### Emotional Connection Graphics
+Best for brand story and engagement.
+```
+An emotional, moment-based photograph capturing [EMOTION/MOMENT].
+The image tells a story without words, evoking [FEELING].
+The aesthetic is authentic, unpolished, and human. People are present and genuine,
+not posed. Warm, natural lighting. This image makes people pause while scrolling.
+1:1 aspect ratio.
+```
+
+---
+
+## Known Limitations and Workarounds
+
+Understanding model limitations is essential for setting realistic expectations and developing effective workarounds.
+
+### Consistency Drift Across Multiple Edits
+
+**Problem:** While excellent at maintaining identity, repeated multi-turn edits cause subtle degradation. Facial expressions may shift, colors may drift after several transformations.
+
+**Example Scenario:**
+- Edit 1: Change clothing (preserves face well)
+- Edit 2: Change background (face remains consistent)
+- Edit 3: Adjust lighting (slight facial expression shift)
+- Edit 4+: Continued degradation
+
+**Workaround:**
+- Limit edits to 2-3 per image before regenerating from scratch
+- Re-upload the "good" image and reference it explicitly: "Keep this person's face exactly as shown"
+- Start a new conversation/session if style drift is observed
+
+### Over-Editing Unintended Areas
+
+**Problem:** Without extremely precise instructions, the model may edit regions you didn't intend to change. A background modification might subtly alter foreground elements.
+
+**Workaround:** Use explicit spatial descriptors and limiting words:
+- "Change **only** the background behind the figure"
+- "Modify **just** the left side of the image"
+- "Adjust **only** the sky; leave all foreground elements completely unchanged"
+
+### Text Rendering Issues
+
+**Problem:** When degraded input text is provided (blurred, damaged, low-resolution), the model tends to generate sharp but semantically incorrect text. "SALE" might become "SAIL."
+
+**Workaround:**
+- Supply clear, high-resolution text inputs
+- Specify exact text in quotes: `Text must read exactly: 'DISCOUNT CODE XYZ'`
+- Use Pro model for text-heavy graphics
+- Generate text in a separate, dedicated pass
+
+### The "Always-Thinking" Bias
+
+**Problem:** The model tends to synthesize more than instructed, especially when removing elements or simplifying compositions. Asked to "remove the person," it fills the space with hallucinated content.
+
+**Workaround:**
+```
+Instead of: "Remove the person"
+Use: "Remove the person completely. Replace their space with plain white background,
+keeping all other elements exactly as they are."
+```
+
+### Generative Bias: Plausibility Over Fidelity
+
+**Problem:** The model prioritizes creating visually "complete" and perceptually plausible images. If removing an object creates a semantic gap, it may synthesize replacement content even if instructed not to.
+
+**Workaround:**
+- Explicitly state preservation constraints: "Do not add any new objects. Only remove the shadow."
+- Be specific about what should replace removed elements: "Remove the person; fill the space with plain white background."
+
+### Shadow and Lighting Insensitivity
+
+**Problem:** Limited sensitivity to subtle shadow detection. Faint shadows may be ignored, or non-shadow areas might be altered.
+
+**Workaround:** Use directional, specific lighting language:
+```
+Instead of: "Soften the shadows"
+Use: "Create softer shadows by diffusing the light from the upper left.
+Keep the shadow clear and defined but less harsh. Maintain the dimensional effect."
+```
+
+### Aspect Ratio Default Surprise
+
+**Problem:** Without explicit specification, some generations default to unexpected dimensions.
+
+**Workaround:** **Always** include aspect ratio explicitly:
+```
+"Create [IMAGE]. Aspect ratio: 1:1 (square). Resolution: 1080×1080px."
+```
+
+### Quick Reference: Common Issues and Fixes
+
+| Issue | Likely Cause | Fix |
+|-------|--------------|-----|
+| Distorted faces | Composition too busy | Crop tighter, reduce scene complexity |
+| Wrong colors | Vague color descriptors | Use specific color names or hex codes |
+| Extra/wrong hands | Complex pose | Simplify pose, specify "five fingers clearly visible" |
+| Style drift | Accumulated errors | Re-upload previous "good" image, make single edit |
+| Over-edited background | Unintended scope | Use explicit spatial directive ("Change only the left half") |
+| Blurry text | Text rendering limitation | Use Pro model or generate text in separate pass |
+| Wrong aspect ratio | Not specified | Always state aspect ratio explicitly |
+
+---
+
+## Iterative Refinement Workflow
+
+### The Disciplined Iteration Loop
+
+Follow this systematic workflow for best results:
+
+**Step 1: Brief (Write the Foundational Prompt)**
+- Capture core intent clearly
+- Include all essential constraints
+- Specify style, dimensions, constraints
+- Keep modular and focused
+
+**Step 2: Generate (Create Initial Candidates)**
+- Produce one or two variations initially
+- Avoid the temptation to generate 10 variations
+- Quality > quantity at this stage
+
+**Step 3: Inspect (Evaluate Against Brief)**
+- Does it match your intent?
+- Identify specific failures (hands, text, lighting, composition)
+- Note what worked well
+
+**Step 4: Constrain/Isolate (Make One Change)**
+- Change only one variable per iteration
+- Reference the previous image explicitly ("Keep this person exactly as shown")
+- Reset context if style drift is observed (start new session)
+
+**Step 5: Document (Track Provenance)**
+- Save prompt, output, and edit log
+- Track what worked and what didn't
+- Build a reusable library over time
+
+### Common Iteration Patterns
+
+**Pattern 1: Gradual Refinement**
+```
+Turn 1: "Create a base image of [SCENE]"
+↓ (Inspect: Lighting is too flat)
+Turn 2: "Now adjust only the lighting to [NEW LIGHTING]. Keep everything else unchanged."
+↓ (Inspect: Better, but colors need adjustment)
+Turn 3: "Adjust only the color palette to [NEW COLORS]. Preserve composition and lighting."
+```
+
+**Pattern 2: Reference Anchoring**
+```
+Turn 1: "Create a portrait of a woman, confident, professional setting"
+↓ (Inspect: Face looks good, but clothing is wrong)
+Turn 2: (Upload generated image) "Keep this person's face exactly as shown.
+Change only the clothing to [NEW CLOTHING]. Preserve her expression and pose."
+```
+
+**Pattern 3: Progressive Detail Addition**
+```
+Turn 1: "Create a simple landscape of [BASIC SCENE]"
+↓ (Inspect: Composition is solid)
+Turn 2: "Add more environmental detail: [NEW DETAILS]. Keep composition and lighting."
+↓ (Inspect: Good)
+Turn 3: "Enhance the mood by adjusting [SPECIFIC ELEMENTS]. Maintain everything else."
+```
+
+### Semantic Negatives Technique
+
+Negative instructions can paradoxically increase the likelihood of unwanted elements. Use semantic alternatives instead.
+
+**Ineffective:**
+```
+"Create a portrait without clutter, no extra hands, no text"
+```
+
+**Effective:**
+```
+"Create a clean portrait with minimal background, clear hands with five fingers each,
+and no visible text or watermarks"
+```
+
+The key is describing what *should* be present instead of what shouldn't.
 
 ---
 

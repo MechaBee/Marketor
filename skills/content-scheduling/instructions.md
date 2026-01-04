@@ -5,7 +5,7 @@ Manage content scheduling, publishing tracking, and calendar maintenance across 
 ## Which Capability?
 
 | Goal | Capability | Example |
-|------|-----------|---------|
+|------|-----------|---------||
 | Add posts to calendar | `schedule_post` | "Schedule post for Nov 15th" |
 | View scheduled posts | `list_posts` | "Show next week's schedule" |
 | Find unscheduled content | `review_drafts` | "What's ready to schedule?" |
@@ -19,6 +19,29 @@ Manage content scheduling, publishing tracking, and calendar maintenance across 
 - Workspace index of all campaign calendars AND regular-social calendar
 - Tracks campaign status (active, paused, completed)
 - Regular-social calendar registered with `type: regular`
+
+**Example master calendar structure:**
+```yaml
+calendar_version: "1.0"
+last_updated: "2025-12-17"
+
+campaigns:
+  # Standard campaign calendar
+  - campaign_id: my-campaign
+    calendar_file: campaigns/my-campaign/calendar.yaml
+    status: active
+    type: campaign
+    description: Campaign description
+    created: 2025-12-01
+  
+  # Regular social content (non-campaign)
+  - campaign_id: regular-social
+    calendar_file: regular-social/calendar.yaml
+    status: active
+    type: regular
+    description: Regular social media content organized by month folders
+    created: 2025-12-17
+```
 
 **Campaign Calendars**: `campaigns/[campaign]/calendar.yaml`
 - Sections: `scheduled_posts` and `published_posts`

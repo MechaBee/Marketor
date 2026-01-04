@@ -14,6 +14,8 @@ Generate comprehensive digital marketing strategy document covering platform-spe
 **Optional**:
 - **focus_platforms**: List of platforms to emphasize (e.g., `["instagram", "google-ads", "linkedin","facebook"]`)
 
+- **competitors**: Ask for a list of main (2-3) competitors and their landing page URLs.
+
 ## Process
 
 ### 1. Confirm Workspace Context
@@ -32,6 +34,7 @@ Verify workspace exists and gather foundational knowledge.
 - Brand name and identity
 - Core products/services
 - Target audience demographics
+- Main competitor URLs
 - Business goals and KPIs
 - Marketing channels in use
 

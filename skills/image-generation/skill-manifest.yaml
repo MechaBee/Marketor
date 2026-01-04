@@ -1,13 +1,14 @@
 # Image Generation Skill Manifest
 
 skill_id: image-generation
-version: "1.0"
+version: "2.0"
 status: beta
 
 description: |
-  Generate AI images with optimized prompts and save them with
-  documentation to workspace. Also supports creating reusable
-  brand-level image generation guidelines.
+  Generate AI images with optimized prompts using Five-Part Architecture
+  and platform-specific best practices. Supports both Flash (high-volume)
+  and Pro (text-heavy/high-resolution) model tiers. Also supports creating
+  reusable brand-level image generation guidelines.
 
 capabilities:
   generate_image:
@@ -22,6 +23,8 @@ capabilities:
       - person_generation
       - art_style
       - image_concept
+      - platform_content_type    # linkedin_educational, linkedin_authority, linkedin_carousel, facebook_lifestyle, facebook_product, facebook_emotional
+      - model_name               # gemini-2.5-flash-image, gemini-3-pro-image-preview
     trigger_patterns:
       - "generate.*image"
       - "create.*image"

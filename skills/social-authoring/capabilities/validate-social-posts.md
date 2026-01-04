@@ -74,7 +74,7 @@ Statistics + detailed issues + file references
 ### Critical Errors (Must Fix)
 
 **Metadata Section:**
-- Missing `## Post Metadata` header
+- Missing `## Post Metadata` header (must be h2 '##' )
 - Using YAML frontmatter format (legacy)
 - Missing required fields: Platform, Format, Topic, Revision, Target Audience, Objective, Created, Status
 - Invalid platform value (not in: facebook, instagram, google, linkedin)
@@ -83,7 +83,7 @@ Statistics + detailed issues + file references
 
 **Content Structure:**
 - Missing `---` separator after metadata
-- Missing `## Post Content` header
+- Missing `## Post Content` header, (must be h2 '##' )
 
 **File Naming:**
 - Pattern mismatch: `text_[topic-slug]_[context-slug]_rev[n].md`

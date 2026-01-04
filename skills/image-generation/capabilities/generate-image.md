@@ -1,6 +1,6 @@
 # Capability: generate_image
 
-Generate AI images with proper prompts and save them with accompanying prompt documentation to the workspace.
+Generate AI images with proper prompts using Five-Part Architecture and save them with accompanying prompt documentation to the workspace.
 
 ## When to Use
 
@@ -19,6 +19,8 @@ Generate AI images with proper prompts and save them with accompanying prompt do
 * `person_generation` - Control people in images (dont_allow, allow_adult, allow_all)
 * `art_style` - Visual style preference
 * `image_concept` - Initial description from user
+* `platform_content_type` - Platform-specific content type (see Platform Content Types below)
+* `model_name` - Model selection: `gemini-2.5-flash-image` (default, fast, cheapest) or `gemini-3-pro-image-preview` (text-heavy, high-res, more expensive)
 
 ## Use Cases
 
@@ -76,23 +78,79 @@ In short: when the image is associated with a text post always place associated 
 
 **File Naming**: Confirm naming convention with user or suggest workspace standard.
 
+## Model Selection Guide
+
+Choose the appropriate model tier based on the image requirements:
+
+### Use Flash (Default)
+- High-volume social media content
+- Rapid prototyping and iteration
+- Standard social posts (LinkedIn, Facebook, Instagram)
+- Quick turnaround requirements
+- Budget-conscious workflows
+
+### Use Pro
+- Text-heavy graphics (logos, infographics, menus)
+- Client deliverables or final brand assets
+- 2K/4K professional output requirements
+- Complex multi-image composition
+- Images requiring precise text rendering
+
+Ask the user for confirmation on the model used, as this is affects the cost.
+
+## Platform Content Types
+
+When creating platform-specific content, use these content types for optimized prompts:
+
+### LinkedIn
+| Content Type | Use Case | Optimal Ratio |
+|--------------|----------|---------------|
+| `linkedin_educational` | Framework graphics, infographics, save-worthy content | 1:1 |
+| `linkedin_authority` | Testimonials, social proof, credibility | 1:1 |
+| `linkedin_carousel` | Multi-slide series cover | 1.91:1 |
+| `linkedin_pattern_interrupt` | Bold statements, stop-scroll graphics | 1:1 |
+
+### Facebook
+| Content Type | Use Case | Optimal Ratio |
+|--------------|----------|---------------|
+| `facebook_lifestyle` | Community, lifestyle, relatability | 1:1 |
+| `facebook_product` | Product showcase, sales | 1:1 |
+| `facebook_emotional` | Brand story, emotional connection | 1:1 |
+
 ## Prompt Creation Guidelines
 
 **Reference**: `/_meta/skills/image-generation/resources/how-to-instruct-image-generation.md` for comprehensive prompt engineering guidance.
 
+### Five-Part Prompt Architecture
+
+Build prompts using this structure:
+
+```
+[COMPOSITION] of [SUBJECT], [ACTION], set in [LOCATION].
+The scene features [ENVIRONMENTAL DETAILS] and is illuminated by [LIGHTING].
+Render in [STYLE] with [TECHNICAL SPECIFICATIONS].
+```
+
 **Essential Elements**:
 
+* **Composition**: Framing and visual perspective (wide-angle, close-up, medium shot)
 * **Subject**: Main focus with specific characteristics
-* **Context**: Environment, setting, lighting conditions
-* **Style**: Photography style or artistic direction
-* **Technical**: Quality modifiers, composition notes
+* **Action/State**: What the subject is doing
+* **Location**: Environment, setting, context
+* **Lighting/Style**: Photography style, lighting approach, artistic direction
 
 **Character Limit**: Maximum 2500 characters
 
-**Example Prompt Structure**:
+**Example Prompt (Professional Level)**:
 
 ```
-[Camera/Lens] [Detailed Subject] in [Rich Context], [Style], [Lighting], [Quality Modifiers]
+A close-up portrait of a thoughtful middle-aged woman with kind eyes,
+savoring morning coffee, set in a charming rustic vintage café with exposed
+brick walls and large windows. The scene features warm, inviting décor with
+brass accents and is illuminated by soft golden-hour natural light streaming
+through windows, creating gentle shadows. Render in documentary lifestyle
+photography style with 85mm lens, shallow depth of field, film-like color
+grading, 4K resolution. Aspect ratio: 4:5.
 ```
 
 ## Prompt Documentation Format
@@ -117,8 +175,47 @@ Before generating, consult user on:
 * Preferred style (photorealistic, illustration, abstract)
 * Mood and tone alignment with content
 * Any brand constraints or requirements
+* **Platform and content type** (LinkedIn educational, Facebook lifestyle, etc.)
+* **Model tier preference** if text-heavy or high-resolution needed
+
+### Platform-Specific Consultation Questions
+
+**For LinkedIn:**
+- Is this educational/framework content (infographic style)?
+- Is this social proof/authority building (testimonial style)?
+- Is this a carousel series (cover + slides)?
+- Does it need to stop the scroll (bold statement)?
+
+**For Facebook:**
+- Is this community/lifestyle focused (authentic, relatable)?
+- Is this product-focused (showcase, sales)?
+- Is this emotional/story-driven (brand connection)?
 
 Keep consultation brief - gather essentials, reference policy doc for technical details.
+
+## Iteration Guidance
+
+**Critical**: Limit edits to 2-3 per image to prevent consistency drift.
+
+### Iteration Workflow
+
+1. **Generate initial image** with comprehensive prompt
+2. **Inspect** against brief - identify specific issues
+3. **Make one change** per iteration using explicit spatial directives
+4. **After 2-3 edits**, regenerate from scratch if needed
+
+### Spatial Directives for Precise Edits
+
+When requesting changes, use explicit spatial language:
+- "Change **only** the background behind the figure"
+- "Modify **just** the left side of the image"
+- "Adjust **only** the lighting; keep all other elements unchanged"
+
+### Text Rendering Best Practices
+
+- Always specify exact text in quotes: `Text must read exactly: 'YOUR TEXT HERE'`
+- Use Pro model for text-heavy graphics
+- Consider generating text in a separate, dedicated pass
 
 ## Tool Integration
 

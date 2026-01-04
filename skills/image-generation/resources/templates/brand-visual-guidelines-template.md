@@ -61,14 +61,73 @@ Use this template to create comprehensive brand visual guidelines. Fill in each 
 - Format: [PNG, JPG]
 - Style Notes: [platform-specific guidance]
 
-### Social Media
-- [Platform]: [specs and style notes]
-- [Platform]: [specs and style notes]
+### LinkedIn
+- **Optimal Image**: 1200×1200px (1:1 square) for maximum reach
+- **Carousel**: 1200×628px (1.91:1) per card
+- **Engagement Factor**: Posts with images receive 2.3× engagement; carousels drive 3× higher reach
+- **Content Types**: [which types work for this brand]
+  - [ ] Educational/Framework graphics (infographic style)
+  - [ ] Authority/Social proof (testimonials)
+  - [ ] Pattern-interrupt (bold statements)
+  - [ ] Carousel series
+- **Style Notes**: [brand-specific LinkedIn guidance]
+
+### Facebook
+- **Optimal Image**: 1200×1200px (1:1 square)
+- **Alternative**: 1200×628px (1.91:1) for feed posts
+- **Engagement Factor**: Images generate 2.3× more engagement than text-only
+- **Content Types**: [which types work for this brand]
+  - [ ] Community/Lifestyle imagery (authentic, relatable)
+  - [ ] Product showcase (aspirational)
+  - [ ] Emotional connection (brand story)
+- **Style Notes**: [brand-specific Facebook guidance]
 
 ### Landing Pages
 - [Specifications and guidelines]
 
-## 5. Template Application Examples
+## 5. Platform Content Strategy
+
+### LinkedIn Strategy
+Document the brand's approach to LinkedIn visual content:
+
+**Primary Content Type**: [educational | authority | thought leadership]
+**Visual Tone**: [professional | bold | innovative]
+**Color Emphasis**: [which brand colors to prioritize on LinkedIn]
+**Template Preferences**: [preferred templates from `_meta/skills/image-generation/resources/image-templates/`]
+
+**Do's**:
+- [Brand-specific LinkedIn guidelines]
+
+**Don'ts**:
+- [Things to avoid on LinkedIn]
+
+### Facebook Strategy
+Document the brand's approach to Facebook visual content:
+
+**Primary Content Type**: [community | lifestyle | product]
+**Visual Tone**: [warm | authentic | aspirational]
+**Color Emphasis**: [which brand colors to prioritize on Facebook]
+**Template Preferences**: [preferred templates from `_meta/skills/image-generation/resources/image-templates/`]
+
+**Do's**:
+- [Brand-specific Facebook guidelines]
+
+**Don'ts**:
+- [Things to avoid on Facebook]
+
+### Model Tier Preferences
+
+**Default Model**: [flash | pro]
+
+**Use Pro Model For**:
+- [specific use cases requiring Pro]
+- [e.g., text-heavy graphics, final brand assets, infographics]
+
+**Iteration Preferences**:
+- Maximum edits per image before regenerating: [2-3 recommended]
+- Reference image approach: [how to maintain consistency across edits]
+
+## 6. Template Application Examples
 
 [Document how to use each image template with this brand]
 
@@ -78,15 +137,37 @@ Use this template to create comprehensive brand visual guidelines. Fill in each 
 - [placeholder2]: [brand-specific value]
 **Example**: [link to example or description]
 
-## 6. Prompt Template Patterns
+### Available Templates
+
+Reference templates from `_meta/skills/image-generation/resources/image-templates/`:
+- `linkedin-authority-graphic.md` - LinkedIn professional content
+- `facebook-lifestyle.md` - Facebook community content
+- `photorealistic-product.md` - Product photography
+- `flat-vector-illustration.md` - Vector graphics and illustrations
+- `clean-section-layout.md` - Corporate announcements
+- `cover-img-left-right-prompt-template.md` - Banner/hero images
+
+## 7. Prompt Template Patterns
 
 [Brand-specific prompt patterns that work well]
 
+### Five-Part Prompt Architecture
+
+Use this structure for consistent results:
+
 ```
-[Example prompt structure that reflects brand style]
+[COMPOSITION] of [SUBJECT], [ACTION], set in [LOCATION].
+The scene features [ENVIRONMENTAL DETAILS] and is illuminated by [LIGHTING].
+Render in [STYLE] with [TECHNICAL SPECIFICATIONS].
 ```
 
-## 7. Examples Gallery
+### Brand-Specific Example
+
+```
+[Example prompt structure that reflects brand style, using brand colors and guidelines]
+```
+
+## 8. Examples Gallery
 
 [Links to exemplary images that capture the brand identity]
 
