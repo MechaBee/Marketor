@@ -1,55 +1,29 @@
 # Capability: Initialize Calendar
 
-## When to Use
+Create a new campaign calendar from scratch.
 
-User wants to create a new campaign calendar from scratch.
+For regular-social calendar, use `brand-onboarding.scaffold_regular_social` instead.
 
-**Note**: For 'regular-social' calendar, use the `brand-onboarding` skill's `scaffold_regular_social` capability instead.
+## Parameters
+
+- **campaign** (required): Campaign folder name (must match folder under `/campaigns/`)
 
 ## Process
 
-### Creating a New Campaign Calendar
+1. **Validate** campaign_id exists as folder, reject "regular-social"
+2. **Ensure master calendar** exists (copy from template if missing)
+3. **Create campaign calendar** from template at `campaigns/[campaign]/calendar.yaml`
+   - Ask before overwriting existing
+4. **Register in master calendar** - add entry if missing, update last_updated
 
-#### 1. Validate Inputs
+## Result
 
-- Confirm `campaign_id` (should match the folder name under `/campaigns/`)
-- If `campaign_id == "regular-social"`: stop and use `brand-onboarding.scaffold_regular_social` instead
+Creates calendar with empty `posts` array, ready for scheduling:
 
-#### 2. Ensure Master Calendar Exists
+```yaml
+campaign_id: [campaign]
+status: active
+posts: []
+```
 
-- Check `/calendar/master-calendar.yaml`
-  - If missing: copy `/_meta/skills/content-scheduling/templates/master-calendar-template.yaml` to `/calendar/master-calendar.yaml`
-  - Replace `last_updated: "[CURRENT_DATE]"` with today's date (YYYY-MM-DD)
-
-#### 4. Create Campaign Calendar
-
-- Copy `/_meta/skills/content-scheduling/templates/campaign-calendar-template.yaml` to `campaigns/[campaign_id]/calendar.yaml`
-  - If `campaigns/[campaign_id]/calendar.yaml` already exists: ask user before overwriting
-- Set the calendar header:
-  ```yaml
-  campaign_id: [campaign_id]
-  status: active
-  ```
-
-#### 5. Register Campaign Calendar in Master Calendar (Required)
-
-- Read `/calendar/master-calendar.yaml` and ensure `campaigns` list exists
-- If an entry for `campaign_id` already exists:
-  - Verify `calendar_file` matches `campaigns/[campaign_id]/calendar.yaml`
-  - If it differs, ask user whether to update master calendar
-- If missing, append:
-  ```yaml
-  - campaign_id: [campaign_id]
-    calendar_file: campaigns/[campaign_id]/calendar.yaml
-    status: active
-    type: campaign
-  ```
-- Update master calendar `last_updated` to today's date
-
-## Regular-Social Calendar
-
-Regular-social calendar uses a different workflow:
-- Created by `scaffold_regular_social` capability in brand-onboarding skill
-- Located at `regular-social/calendar.yaml`
-- Registered in master calendar with `type: regular`
-- Do NOT use this capability for regular-social - it will be auto-created
+Calendar is registered in master for discovery by `list_posts` and `validate_schedule`.

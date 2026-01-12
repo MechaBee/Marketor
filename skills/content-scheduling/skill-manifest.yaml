@@ -5,8 +5,10 @@ version: "1.0"
 status: active
 
 description: |
-  Manage content post scheduling, publishing, and calendar maintenance
-  across campaigns and platforms.
+  Manage content post scheduling and calendar maintenance across campaigns and platforms.
+  IMPORTANT: This skill does NOT publish directly to external platforms (Facebook, Instagram,
+  LinkedIn, Google Ads). Status changes are for record-keeping only - users publish manually
+  then report back to update the calendar.
 
 capabilities:
   initialize_calendar:
@@ -66,7 +68,7 @@ capabilities:
       - "review.*unscheduled"
     
   mark_published:
-    description: Mark a scheduled post as published and move to published history
+    description: Record that user manually published a post - updates status and adds publishing metadata
     instruction_file: capabilities/mark-published.md
     required_params:
       - content_file_path
@@ -78,7 +80,20 @@ capabilities:
       - "publish.*post"
       - "mark.*published"
       - "post.*went.*live"
-    note: "Auto-detects campaign vs regular-social from content_file_path"
+    note: "Record-keeping only - user publishes manually then reports back. Auto-detects campaign vs regular-social from content_file_path"
+
+  mark_failed:
+    description: Record that a post failed to publish manually - updates status and adds failure reason
+    instruction_file: capabilities/mark-published.md
+    required_params:
+      - content_file_path
+    optional_params:
+      - failure_reason
+    trigger_patterns:
+      - "post.*failed"
+      - "mark.*failed"
+      - "couldn't.*publish"
+    note: "Record-keeping only - user reports publishing failure"
     
   validate_schedule:
     description: Validate calendar integrity and check for errors or conflicts
@@ -121,6 +136,7 @@ validation_rules:
     - instagram
     - google
     - linkedin
+    - twitter
   supported_formats:
     facebook:
       - fb-link-post
@@ -139,16 +155,19 @@ validation_rules:
     linkedin:
       - li-post
       - li-article
+    twitter:
+      - tw-post
+      - tw-thread
+      - tw-reply
   post_statuses:
-    - draft
-    - scheduled
-    - published
-    - failed
+    - draft        # Content ready, not yet scheduled
+    - scheduled    # Ready for manual publishing
+    - published    # User reported successful publish
+    - failed       # User reported publishing failed
+  post_status_transitions:
+    draft: [scheduled]
+    scheduled: [published, failed]
+    published: []  # Terminal state
+    failed: [scheduled]  # Can retry
 
-integration_notes: |
-  Regular-Social Calendar Support:
-  - Regular-social calendar created by brand-onboarding skill's scaffold_regular_social
-  - Registered in master calendar with type: regular
-  - Content organized by month folders (2025-M11, 2025-M12) and evergreen
-  - Scheduling capabilities auto-detect regular-social paths
-  - month_folder field included in regular-social calendar entries for filtering
+# Calendar format and integration notes: see instructions.md

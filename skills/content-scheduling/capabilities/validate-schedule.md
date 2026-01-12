@@ -1,183 +1,61 @@
 # Capability: Validate Schedule
 
-## When to Use
-
-User wants to check calendar integrity, detect errors, conflicts, and inconsistencies.
-
-**Trigger patterns:**
-- "validate calendar"
-- "check calendar for errors"
-- "calendar errors"
-
-**Don't use when:**
-- User wants to VIEW scheduled posts (use `list_posts`)
-- User wants to SCHEDULE posts (use `schedule_post` or `review_drafts`)
+Check calendar integrity, detect errors and conflicts.
 
 ## Parameters
 
-- **campaign_id** (optional): Validate specific campaign or "regular-social"
-  - If omitted: Validates all campaigns AND regular-social
-  - Can be campaign name OR "regular-social"
-  - Use for focused validation after updates
+- **campaign_id** (optional): Specific campaign or "regular-social". If omitted, validates all.
 
-## What Gets Validated
+## Validation Checks
 
-See `skill-manifest.yaml` validation_rules for formats, platforms, and status values.
-
-### Critical Errors (Must Fix)
-- Content files missing
-- Media files missing
-- Invalid date/time formats
-- Invalid platform/format values
-- Format-platform mismatch
+**Errors (must fix):**
+- Campaign Calendar is not registered in master calendar
+- Content/media files missing
+- Invalid date/time/platform/format values
 - Invalid YAML syntax
-- Duplicate entries
-- Posts in both scheduled and published sections
+- Duplicate content_file entries
 
-### Warnings (Should Review)
-- Scheduling conflicts (multiple posts same time/platform)
-- Past scheduled dates with "scheduled" status
-- Invalid timezone (will use default)
-- Published posts missing platform_post_id
+**Warnings (review):**
+- Time conflicts (multiple posts same time/platform)
+- Past dates with status scheduled/draft
+- Published posts missing platform_url
 
-### Info (Nice to Have)
-- Missing platform_post_id for tracking
+**Info:**
 - Campaigns not in master calendar
-- Orphaned calendar files
 
-## High-Level Process
+## Process
 
-### 1. Determine Scope
+1. **Determine scope** - specific campaign or all from master calendar
+2. **Parse calendars** - report syntax errors
+3. **Validate each post** in posts array:
+   - Files exist (content + media)
+   - Values match manifest validation_rules
+   - Status-specific fields present
+4. **Detect conflicts** - duplicates, time overlaps, past dates
+5. **Generate report** - PASS/FAIL with grouped errors, warnings, suggestions
 
-**If campaign_id provided:**
-- Validate that campaign/calendar only
-- For campaigns: `campaigns/[campaign_id]/calendar.yaml`
-- For regular-social: `regular-social/calendar.yaml`
-
-**If campaign_id NOT provided:**
-- Read master calendar
-- Validate all campaigns AND regular-social calendar
-
-### 2. Read and Parse Calendars
-
-For each calendar:
-- Read file using workspace_read_operations
-- Parse YAML (if parse fails, report syntax error)
-- Verify required fields exist (campaign_id, status, scheduled_posts)
-
-### 3. Validate Posts
-
-For each post in scheduled_posts and published_posts:
-- **Files**: Verify content file and media files exist
-  - For campaigns: Resolve paths relative to campaign folder
-  - For regular-social: Resolve paths relative to `regular-social/` folder
-- **Platform/Format**: Check against manifest validation_rules
-- **Dates/Times**: Verify formats and validity
-- **Status**: Check valid and consistent with section
-- **Timezone**: Validate IANA identifier if provided
-- **Regular-social specific**: Validate `month_folder` field format (YYYY-M## or "evergreen")
-
-### 4. Detect Conflicts
-
-- **Duplicates**: Same content_file_path multiple times in scheduled_posts
-- **Cross-section**: Content in both scheduled and published
-- **Time conflicts**: Multiple posts same date/time/platform (warning)
-- **Past dates**: Scheduled posts with past dates (warning)
-
-### 5. Cross-Calendar Checks (if all campaigns)
-
-- Verify campaigns in master calendar
-- Detect orphaned calendars not in master
-
-### 6. Generate Report
-
-Report overall status (PASS/FAIL):
-- **PASS**: No errors (warnings/info OK)
-- **FAIL**: One or more errors found
-
-Include:
-- Summary statistics
-- Detailed error list with file references
-- Warnings and recommendations
-- Info messages
-- Suggested fixes
-
-## Key Behaviors
-
-**Continue on Error:**
-If one calendar fails to read/parse, log error but continue validating others.
-
-**Specific File References:**
-Always include file paths using `[file:path]` format for easy navigation.
-
-**Actionable Suggestions:**
-For each error, suggest specific fix (not just "fix this").
-
-**Severity Levels:**
-- Errors: Block publishing, must fix
-- Warnings: Review recommended, not blocking
-- Info: Nice to have, informational only
-
-**Grouped Reporting:**
-Group similar errors together, don't repeat same message multiple times.
-
-## Example Interaction
+## Example
 
 **User:** "Validate all calendars"
 
-**Agent:**
+**Response:**
 ```
-Validating 5 campaigns...
+PASSED (6 calendars, 47 posts)
 
-✅ PASSED
+Warnings:
+1. Time Conflict (summer-travel)
+   Nov 15 10:00 Facebook: 2 posts scheduled
+   Fix: Space 1-2 hours apart
 
-📊 Summary:
-- Calendars: 5 checked
-- Posts: 47 validated (42 scheduled, 5 published)
-- Errors: 0 | Warnings: 2 | Info: 1
-
-⚠️ Warnings:
-
-1. Scheduling Conflict (summer-travel)
-   Nov 15 at 10:00 on Facebook:
-   - text_travel-tips_rev1.md
-   - text_travel-insurance_rev1.md
-   Fix: Space posts 1-2 hours apart
-
-2. Past Scheduled Date (home-insurance)
-   text_home-emergency_rev1.md scheduled for Oct 20
-   (Today: Oct 25)
-   Fix: Reschedule or mark as published
-
-All calendars valid and ready!
-
-Review warnings: [file references]
+2. Past Date (home-insurance)
+   text_home-emergency_rev1.md scheduled Oct 20 (today: Oct 25)
+   Fix: Mark published/failed or reschedule
 ```
 
-See `resources/validate-schedule-examples.md` for detailed examples including failed validations, syntax errors, and complex scenarios.
+## Notes
 
-## Error Handling
+- Past-dated scheduled posts are warnings (user may have published but not marked)
+- Continue validating other calendars if one fails
+- Always include `[file:path]` references for navigation
 
-**Campaign not found:** List available campaigns
-
-**Calendar file not found:** Offer to create from template
-
-**Invalid YAML syntax:** Show error location, offer to fix or recreate
-
-**No calendars found:** Suggest creating first campaign
-
-## Integration Points
-
-**After `schedule_post`:** Validate to catch errors immediately
-
-**After `review_drafts`:** Validate bulk scheduled posts
-
-**Before `mark_published`:** Ensure calendar integrity before publishing
-
-**With master calendar:** Verify campaign registration
-
-## File References
-
-**Validation rules:** `/_meta/skills/content-scheduling/skill-manifest.yaml`
-**Detailed examples:** `/_meta/skills/content-scheduling/resources/validate-schedule-examples.md`
-**Calendar template:** `/_meta/skills/content-scheduling/templates/campaign-calendar-template.yaml`
+See `resources/validate-schedule-examples.md` for error scenarios.

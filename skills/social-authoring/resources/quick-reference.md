@@ -21,6 +21,9 @@ Fast lookup for common patterns, formats, and decisions.
 | | g-discovery | Native feed awareness |
 | **linkedin** | li-post | Engagement, thought leadership |
 | | li-article | Long-form expertise, SEO |
+| **twitter** | tw-post | Quick updates, announcements |
+| | tw-thread | Long-form storytelling, tutorials |
+| | tw-reply | Engagement, conversation building |
 
 ---
 
@@ -189,6 +192,10 @@ cta: soft (engagement/newsletter)
 | **LinkedIn** | Post | 3,000 chars (optimal: 150-300 words) |
 | | Article | 125,000 chars (optimal: 800-2000 words) |
 | | Hashtags | 3-5 recommended |
+| **Twitter** | Tweet (standard) | 280 chars (optimal: 71-100 chars) |
+| | Tweet (Premium) | 25,000 chars |
+| | Thread per tweet | 280 chars (5-15 tweets optimal) |
+| | Hashtags | 1-2 recommended |
 
 ---
 
@@ -199,6 +206,7 @@ cta: soft (engagement/newsletter)
 | **Facebook** | 3-5 | Branded + 2-3 relevant niche tags |
 | **Instagram** | 8-12 | Mix: 30% trending, 50% niche (10k-500k), 20% branded |
 | **LinkedIn** | 3-5 | Industry-specific, professional tags only |
+| **Twitter** | 1-2 | Minimal for engagement, trending for reach |
 | **Google** | N/A | Not applicable |
 
 ---
@@ -255,6 +263,9 @@ draft → review → approved → published
 | **Google** | Button | "Get Quote" / "Learn More" / "Sign Up" |
 | **LinkedIn** | Soft | "What's your experience? Comment below." |
 | | Direct | "Download our guide: [link]" |
+| **Twitter** | Engagement | "Reply with your take 👇" |
+| | Retweet | "RT if you agree" |
+| | Follow | "Follow for more [topic] content" |
 
 ---
 
@@ -313,3 +324,6 @@ Before finalizing content, verify:
 | g-display | Generate image assets, configure targeting |
 | li-post | Schedule, boost post |
 | li-article | Add header image, publish, promote |
+| tw-post | Add image/GIF, schedule |
+| tw-thread | Create thread visuals, schedule first tweet |
+| tw-reply | Identify target tweets, schedule engagement |

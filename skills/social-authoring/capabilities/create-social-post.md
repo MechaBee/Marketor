@@ -225,5 +225,6 @@ Generated content must have:
     - Meta (facebook and instagram): `/_meta/skills/social-authoring/resources/platform-content-structures-meta.md`
     - Google (display and search): `/_meta/skills/social-authoring/resources/platform-content-structures-google.md`
     - LinkedIn: `/_meta/skills/social-authoring/resources/platform-content-structures-linkedin.md`
+    - Twitter/X: `/_meta/skills/social-authoring/resources/platform-content-structures-twitter.md`
     - Cross platform: `/_meta/skills/social-authoring/resources/platform-content-structures-cross-platform.md`
 **Strategy guide:** `/policies/digital-marketing-plan.md`

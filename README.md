@@ -52,3 +52,48 @@ Once you find a workflow that works for you, you can easily prompt the agent to 
 ### Use a coding agent like Claude Code or Codex to develop new skills
 TBD
 
+## Changelog
+
+All notable changes to this project will be documented in this section.
+
+### [Unreleased]
+- _No unreleased changes yet_
+
+### [1.0.0] - YYYY-MM-DD
+- Initial public release
+
+## [1.0.1] - 2026-01-12
+### Added
+- **Twitter/X Platform Support** for social content authoring
+  - `tw-post` - Standard tweets (280 chars, 25K for Premium)
+  - `tw-thread` - Multi-tweet threads for long-form storytelling
+  - `tw-reply` - Reply tweets for engagement and conversation building
+- New resource: skills/social-authoring/resources/platform-content-structures-twitter.md
+### Changed
+- Updated skills/social-authoring/skill-manifest.yaml with Twitter platform and formats
+- Updated skills/content-scheduling/skill-manifest.yaml with Twitter scheduling support
+- Updated skills/social-authoring/resources/quick-reference.md with:
+  - Twitter format mappings
+  - Character limits (280 chars standard, optimal 71-100)
+  - Hashtag strategy (1-2 recommended)
+  - Platform-specific CTAs
+  - Next step suggestions for Twitter formats
+- Updated skills/social-authoring/capabilities/create-social-post.md with Twitter guide reference
+
+
+<!--
+Template for new releases:
+
+### [X.Y.Z] - YYYY-MM-DD
+#### Added
+- New features
+
+#### Changed
+- Changes in existing functionality
+
+#### Fixed
+- Bug fixes
+
+#### Removed
+- Removed features
+-->

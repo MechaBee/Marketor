@@ -78,6 +78,7 @@ validation_rules:
     - instagram
     - google
     - linkedin
+    - twitter
   supported_formats:
     meta:
       - fb-link-post
@@ -95,6 +96,10 @@ validation_rules:
     linkedin:
       - li-post
       - li-article
+    twitter:
+      - tw-post
+      - tw-thread
+      - tw-reply
   objectives:
     - awareness
     - engagement

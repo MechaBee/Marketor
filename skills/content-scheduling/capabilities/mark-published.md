@@ -1,89 +1,62 @@
-# Capability: Mark Published
+# Capability: Mark Published / Mark Failed
 
-## When to Use
+Record that user manually published a post (or that publishing failed). This is for record-keeping only.
 
-User confirms a post has been published on-platform and wants the calendar updated by moving the entry from `scheduled_posts` to `published_posts`.
+## Parameters
 
-**Trigger patterns:**
-- "publish post"
-- "mark published"
-- "post went live"
+**mark_published:**
+- **content_file_path** (required): Path to content file
+- **published_date** (required): YYYY-MM-DD or ISO 8601
+- **platform_post_id** (optional): Platform-assigned ID
+- **platform_url** (optional): Link to published post
 
-**Don't use when:**
-- User wants to schedule a post (use `schedule_post`)
-- User wants to review scheduled content (use `list_posts`)
+**mark_failed:**
+- **content_file_path** (required): Path to content file
+- **failure_reason** (optional): Why publishing failed
 
-## Required Parameters
+## Process
 
-- **content_file_path**: Workspace path to content `.md` file
-- **published_date**: Publication date (YYYY-MM-DD or ISO 8601 string)
+1. **Validate** content file exists
+2. **Detect calendar** from path (campaign vs regular-social)
+3. **Find entry** in posts array by content_file
+4. **Update status and metadata**:
+   - `scheduled` → `published`: Add published_date, platform_post_id, platform_url
+   - `scheduled` → `failed`: Add failure_reason
+   - `failed` → `published`: Retry succeeded
+   - Not found → Add new entry (untracked publish)
+5. **Confirm** with file reference
 
-## Optional Parameters
+## Status Transitions
 
-- **platform_post_id**: Platform-assigned post ID
-- **platform_url**: Direct link to the published post
+| From | To Published | To Failed |
+|------|--------------|-----------|
+| scheduled | Add publish metadata | Add failure_reason |
+| draft | Warn, allow | Warn |
+| published | Ask to update | Cannot |
+| failed | Retry succeeded | Update reason |
 
-## High-Level Process
+## Examples
 
-### 1. Validate Content File
-
-Verify `content_file_path` exists. If missing, stop and ask for the correct path.
-
-### 2. Detect Calendar Context
-
-Determine the calendar based on `content_file_path`:
-
-**Campaign content**
-```
-campaigns/[campaign-name]/content-assets/... → campaign-name
-Calendar path: campaigns/[campaign-name]/calendar.yaml
-Relative key: content-assets/...
-```
-
-**Regular-social content**
-```
-regular-social/[month-folder]/[platform]/[format]/... → regular-social
-Calendar path: regular-social/calendar.yaml
-Relative key: [month-folder]/[platform]/[format]/...
-```
-
-If the path matches neither pattern, report an error and provide examples of valid paths.
-
-### 3. Read Calendar
-
-Read the calendar file. If it doesn't exist, report the missing calendar and offer to create/initialize it first.
-
-### 4. Move Entry (Scheduled → Published)
-
-Using the **relative key**:
-- If the entry is in `scheduled_posts`, remove it.
-- Add/update the entry in `published_posts` with:
-  - `published_date`
-  - `platform_post_id` (if provided)
-  - `platform_url` (if provided)
-
-**Already published**
-- If the entry already exists in `published_posts`, report it and ask whether to update `published_date` / `platform_url`.
-
-**Not found**
-- If the entry is not found in either section, add it to `published_posts` (user-confirmed publish), and note that no scheduled entry was found.
-
-### 5. Write and Confirm
-
-Write the updated calendar via `workspace_write_operations`.
-Confirm the update with a file reference and the published metadata recorded.
-
-## Example Interaction
-
-**User:** "Mark this post as published today: campaigns/summer-travel/.../text_travel-tips_rev1.md"
+**User:** "I published the travel tips post. Link: https://facebook.com/posts/123"
 
 **Agent:**
 ```
-✅ Marked published
-
+Marked as published!
 Content: text_travel-tips_rev1.md
-Published date: 2025-12-13
-
-Calendar updated: [file:campaigns/summer-travel/calendar.yaml]
+Published: 2025-11-15T10:05:00Z
+URL: https://facebook.com/posts/123
+Calendar: [file:campaigns/summer-travel/calendar.yaml]
 ```
 
+---
+
+**User:** "The Instagram reel failed - video too long"
+
+**Agent:**
+```
+Marked as failed.
+Content: text_travel-reel_rev1.md
+Reason: Video too long
+
+Would you like to reschedule or edit content?
+```
