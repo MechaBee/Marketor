@@ -60,7 +60,7 @@ Once you find a workflow that works for you, you can easily prompt the agent to 
 All notable changes to this project will be documented in this section.
 
 ### [1.0.2] - 2026-01-12
-### [1.0.1] - 2026-01-12
+
 #### Added
 - **Twitter/X Platform Support** for social content authoring
   - `tw-post` - Standard tweets (280 chars, 25K for Premium)
@@ -78,6 +78,9 @@ All notable changes to this project will be documented in this section.
   - Next step suggestions for Twitter formats
 - Updated skills/social-authoring/capabilities/create-social-post.md with Twitter guide reference
 
+### [1.0.1] - 2026-01-12
+
+Technical changes
 
 ### [1.0.0] - 2025-12-14
 - Initial public release
