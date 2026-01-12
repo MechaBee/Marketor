@@ -43,72 +43,31 @@ This allows you to customize the basuc Marketing AI Agent workflows however you 
 ## Approaches to customization
 
 ### Use MechaBee itself to customize it's own skills
-- _No unreleased changes yet_
-
-### [1.0.2] - 2026-01-12
 Once you find a workflow that works for you, you can easily prompt the agent to save and add a new capability to an existing skillset or create and register a new skill. Then:
 1. simply copy / paste the created skill files to a locally checked out repo
 2. update the checked out files / add new files as required
 3. zip the skills directory (with the skills folder included)
 3. upload your skill zip bundle
-TBD
-## Changelog
-All notable changes to this project will be documented in this section.
-### [Unreleased]
-### [1.0.0] - YYYY-MM-DD
-- Initial public release
-## [1.0.1] - 2026-01-12
-### Added
-- **Twitter/X Platform Support** for social content authoring
-  - `tw-post` - Standard tweets (280 chars, 25K for Premium)
-  - `tw-thread` - Multi-tweet threads for long-form storytelling
-  - `tw-reply` - Reply tweets for engagement and conversation building
-- New resource: skills/social-authoring/resources/platform-content-structures-twitter.md
-### Changed
-- Updated skills/social-authoring/skill-manifest.yaml with Twitter platform and formats
-- Updated skills/content-scheduling/skill-manifest.yaml with Twitter scheduling support
-- Updated skills/social-authoring/resources/quick-reference.md with:
-  - Twitter format mappings
-  - Character limits (280 chars standard, optimal 71-100)
-  - Hashtag strategy (1-2 recommended)
-  - Platform-specific CTAs
-  - Next step suggestions for Twitter formats
-- Updated skills/social-authoring/capabilities/create-social-post.md with Twitter guide reference
-<!--
-Template for new releases:
-### [X.Y.Z] - YYYY-MM-DD
-#### Added
-- New features
-#### Changed
-- Changes in existing functionality
-#### Fixed
-- Bug fixes
-#### Removed
-- Removed features
--->
+
 ### Use a coding agent like Claude Code or Codex to develop new skills
+- TBD
+
+
+## [Unreleased]
 - _No unreleased changes yet_
 
-### [1.0.2] - 2026-01-12
-Once you find a workflow that works for you, you can easily prompt the agent to save and add a new capability to an existing skillset or create and register a new skill. Then:
-1. simply copy / paste the created skill files to a locally checked out repo
-2. update the checked out files / add new files as required
-3. zip the skills directory (with the skills folder included)
-3. upload your skill zip bundle
-TBD
 ## Changelog
 All notable changes to this project will be documented in this section.
-### [Unreleased]
-### [1.0.0] - YYYY-MM-DD
-- Initial public release
-## [1.0.1] - 2026-01-12
-### Added
+
+### [1.0.2] - 2026-01-12
+### [1.0.1] - 2026-01-12
+#### Added
 - **Twitter/X Platform Support** for social content authoring
   - `tw-post` - Standard tweets (280 chars, 25K for Premium)
   - `tw-thread` - Multi-tweet threads for long-form storytelling
   - `tw-reply` - Reply tweets for engagement and conversation building
 - New resource: skills/social-authoring/resources/platform-content-structures-twitter.md
-### Changed
+#### Changed
 - Updated skills/social-authoring/skill-manifest.yaml with Twitter platform and formats
 - Updated skills/content-scheduling/skill-manifest.yaml with Twitter scheduling support
 - Updated skills/social-authoring/resources/quick-reference.md with:
@@ -118,6 +77,11 @@ All notable changes to this project will be documented in this section.
   - Platform-specific CTAs
   - Next step suggestions for Twitter formats
 - Updated skills/social-authoring/capabilities/create-social-post.md with Twitter guide reference
+
+
+### [1.0.0] - 2025-12-14
+- Initial public release
+
 <!--
 Template for new releases:
 ### [X.Y.Z] - YYYY-MM-DD
