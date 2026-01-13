@@ -15,6 +15,8 @@ Manage content scheduling and calendar maintenance across campaigns and regular-
 | Record publish failure | `mark_failed` | "The post failed to publish" |
 | Check for errors | `validate_schedule` | "Validate calendar" |
 | Create campaign calendar | `initialize_calendar` | "Set up new calendar" |
+| Set posting frequency targets | `configure_cadence` | "Set Facebook cadence to 3-5/week" |
+| Check posting progress | `cadence_report` | "Are we on track this week?" |
 
 ## Calendar Structure
 
@@ -164,6 +166,37 @@ mark_failed (report reason) → reschedule or fix content
 * **When publish fails**: Use `mark_failed` to record reason
 * **After validation**: Use `schedule_post` to fix conflicts
 * **When finding content**: Use `review_drafts` then `schedule_post`
+* **Check weekly progress**: Use `cadence_report` to compare against targets
+
+## Cadence Planning
+
+Cadence planning helps maintain consistent posting frequency and content mix across platforms.
+
+**Cadence Targets File**: `/policies/cadence-targets.yaml`
+
+* Workspace-level (applies to all campaigns + regular-social)
+* Defines weekly min/max posts per platform
+* Optionally defines target objective mix (awareness, engagement, conversion, traffic, thought-leadership)
+* Created via `configure_cadence` capability or by copying template
+
+**Cadence Workflow**:
+
+```
+configure_cadence (initial setup) →
+schedule posts throughout week →
+cadence_report (check progress) →
+adjust scheduling if needed
+```
+
+**Week Definition**: ISO week (Monday 00:00 to Sunday 23:59)
+
+**What Counts**: Posts with status `scheduled` or `published` in the target week
+
+**Objective Tracking**:
+
+* Objectives are read from content file metadata (`**Objective**: [value]` in `## Post Metadata` section)
+* Posts without objective metadata are counted as "unspecified"
+* Supported objectives: awareness, engagement, conversion, traffic, thought-leadership
 
 ## Platform Timing Quick Reference
 
@@ -210,6 +243,8 @@ regular-social/
     media/[files]
   2025-M12/[platform]/[format]/
   evergreen/[platform]/[format]/
+policies/
+  cadence-targets.yaml     # Weekly posting targets per platform + objective mix
 ```
 
 ## See Also

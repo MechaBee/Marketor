@@ -62,7 +62,6 @@ If file exists, ask user: create new revision, overwrite, use different context,
 Read:
 - Main strategy: `policies/digital-marketing-plan.md`
 - Campaign strategies: `campaigns/[campaign]/topic-strategies/*.md`
-- Content template: `_meta/skills/social-authoring/templates/social-post-template.md`
 
 ### 5. Delegate to Content Processor
 

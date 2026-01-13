@@ -1,0 +1,68 @@
+# Workspace Cadence Targets Template
+# Copy to: /policies/cadence-targets.yaml
+# Defines weekly posting frequency targets per platform and optional objective mix
+#
+# Usage:
+# 1. Copy this file to /policies/cadence-targets.yaml
+# 2. Adjust platform targets based on your marketing strategy
+# 3. Optionally configure objective_mix for content balance tracking
+# 4. Use configure_cadence capability to modify, or edit directly
+
+version: "1.0"
+last_updated: "YYYY-MM-DD"  # Update when modified
+
+# Platform frequency targets
+# Define minimum and maximum posts per week for each platform
+platforms:
+  facebook:
+    weekly_min: 3
+    weekly_max: 5
+    notes: "Focus on engagement posts mid-week"
+
+  instagram:
+    weekly_min: 4
+    weekly_max: 7
+    notes: "Mix of reels and carousel posts"
+
+  linkedin:
+    weekly_min: 2
+    weekly_max: 3
+    notes: "Thought leadership content"
+
+  twitter:
+    weekly_min: 5
+    weekly_max: 10
+    notes: "Higher frequency for reach"
+
+  google:
+    weekly_min: 0
+    weekly_max: 2
+    notes: "Ad campaigns as needed"
+
+# Objective mix targets (optional)
+# Defines target percentage distribution of content objectives
+# Percentages should ideally sum to 100, but this is not enforced
+# If this section is omitted, objective tracking is disabled
+#
+# Objectives are read from content file metadata (## Post Metadata → Objective field)
+# Posts without objective metadata are counted as "unspecified"
+objective_mix:
+  awareness:
+    target_percentage: 20
+    notes: "Brand building content - reels, display ads, viral content"
+
+  engagement:
+    target_percentage: 40
+    notes: "Community interaction - questions, polls, discussions"
+
+  conversion:
+    target_percentage: 15
+    notes: "Direct sales/signup CTAs - search ads, promo posts"
+
+  traffic:
+    target_percentage: 20
+    notes: "Website/blog traffic drivers - link posts, articles"
+
+  thought-leadership:
+    target_percentage: 5
+    notes: "LinkedIn expertise content - articles, industry insights"

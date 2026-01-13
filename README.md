@@ -53,11 +53,14 @@ Once you find a workflow that works for you, you can easily prompt the agent to 
 - TBD
 
 
-## [Unreleased]
-- _No unreleased changes yet_
-
 ## Changelog
 All notable changes to this project will be documented in this section.
+
+### [Unreleased]
+Cadence planning capabilities for the content-scheduling skill were added.
+- New files: `cadence-targets-template.yaml` (workspace cadence template with platform weekly min/max targets and optional objective mix), `configure-cadence.md` (configure platform frequency targets and objective mix with interactive setup), `cadence-report.md` (weekly cadence comparison reports with basic/detailed modes, platform and objective mix analysis), `cadence-report-examples.md` (7 example scenarios including on-track, gaps, missing metadata, and no targets).
+- Files modified: `skills/content-scheduling/skill-manifest.yaml` (added `configure_cadence`, `cadence_report`, `cadence_targets`, `cadence_rules` with supported objectives), `skills/content-scheduling/instructions.md` (new rows in "Which Capability?" table, "Cadence Planning" workflow section, cadence checking integration pattern, `/policies/cadence-targets.yaml` in file structure).
+- Key features: weekly platform frequency targets; objective mix tracking for awareness/engagement/conversion/traffic/thought-leadership; ISO week definition (Mon–Sun); workspace-scoped across campaigns and regular-social; objective extraction from existing content metadata (no schema changes).
 
 ### [1.0.2] - 2026-01-12
 

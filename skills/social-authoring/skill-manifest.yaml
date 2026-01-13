@@ -69,7 +69,6 @@ workspace_paths:
   policies: "/policies/digital-marketing-plan.md"
   content_assets: "/campaigns/[campaign-name]/content-assets/[channel]/[publisher]/[format]/"
   knowledge: "/campaigns/[campaign-name]/knowledge/"
-  content_template: "/_meta/skills/social-authoring/templates/social-post-template.md"
 
 validation_rules:
   file_naming_pattern: "text_[topic-slug]_[context-slug]_rev[n].md"

@@ -106,6 +106,42 @@ capabilities:
       - "check.*calendar"
       - "calendar.*errors"
 
+  configure_cadence:
+    description: Set up or update weekly posting cadence targets per platform and objective mix
+    instruction_file: capabilities/configure-cadence.md
+    required_params: []
+    optional_params:
+      - platform
+      - weekly_min
+      - weekly_max
+      - objective
+      - target_percentage
+      - notes
+    trigger_patterns:
+      - "set.*cadence"
+      - "configure.*posting.*frequency"
+      - "update.*cadence.*target"
+      - "how.*many.*posts.*per.*week"
+      - "weekly.*posting.*goals"
+      - "content.*mix"
+      - "objective.*target"
+
+  cadence_report:
+    description: Generate report comparing cadence targets vs scheduled/published posts for a week
+    instruction_file: capabilities/cadence-report.md
+    required_params: []
+    optional_params:
+      - week_start_date
+      - detail_level
+      - include_objectives
+    trigger_patterns:
+      - "cadence.*report"
+      - "check.*posting.*frequency"
+      - "are.*we.*on.*track"
+      - "weekly.*posting.*status"
+      - "posting.*progress"
+      - "content.*mix.*report"
+
 required_tools:
   - workspace_read_operations
   - workspace_write_operations
@@ -118,6 +154,7 @@ workspace_paths:
   master_calendar: "/calendar/master-calendar.yaml"
   campaign_calendars: "/campaigns/*/calendar.yaml"
   regular_social_calendar: "/regular-social/calendar.yaml"
+  cadence_targets: "/policies/cadence-targets.yaml"
   path_patterns:
     campaign_content: "campaigns/*/content-assets/**"
     regular_social_content: "regular-social/[YYYY-M##]/**"
@@ -169,5 +206,16 @@ validation_rules:
     scheduled: [published, failed]
     published: []  # Terminal state
     failed: [scheduled]  # Can retry
+  cadence_rules:
+    week_definition: "ISO week (Monday-Sunday)"
+    detail_levels:
+      - basic
+      - detailed
+    supported_objectives:
+      - awareness
+      - engagement
+      - conversion
+      - traffic
+      - thought-leadership
 
 # Calendar format and integration notes: see instructions.md
