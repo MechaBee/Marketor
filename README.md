@@ -57,20 +57,37 @@ Once you find a workflow that works for you, you can easily prompt the agent to 
 All notable changes to this project will be documented in this section.
 
 ### [Unreleased]
-Cadence planning capabilities for the content-scheduling skill were added.
-- New files: `cadence-targets-template.yaml` (workspace cadence template with platform weekly min/max targets and optional objective mix), `configure-cadence.md` (configure platform frequency targets and objective mix with interactive setup), `cadence-report.md` (weekly cadence comparison reports with basic/detailed modes, platform and objective mix analysis), `cadence-report-examples.md` (7 example scenarios including on-track, gaps, missing metadata, and no targets).
-- Files modified: `skills/content-scheduling/skill-manifest.yaml` (added `configure_cadence`, `cadence_report`, `cadence_targets`, `cadence_rules` with supported objectives), `skills/content-scheduling/instructions.md` (new rows in "Which Capability?" table, "Cadence Planning" workflow section, cadence checking integration pattern, `/policies/cadence-targets.yaml` in file structure).
-- Key features: weekly platform frequency targets; objective mix tracking for awareness/engagement/conversion/traffic/thought-leadership; ISO week definition (Mon–Sun); workspace-scoped across campaigns and regular-social; objective extraction from existing content metadata (no schema changes).
+
+Cadence planning capabilities added to content-scheduling skill.
+
+**New files**:
+
+`cadence-targets-template.yaml` (workspace cadence template with platform weekly min/max targets and optional objective mix), `configure-cadence.md` (configure platform frequency targets and objective mix with interactive setup), `cadence-report.md` (weekly cadence comparison reports with basic/detailed modes, platform and objective mix analysis), `cadence-report-examples.md` (7 example scenarios including on-track, gaps, missing metadata, and no targets).
+
+**Changes files**:
+
+- `skills/content-scheduling/skill-manifest.yaml` (added `configure_cadence`, `cadence_report`, `cadence_targets`, `cadence_rules` with supported objectives),
+
+- `skills/content-scheduling/instructions.md` (new rows in "Which Capability?" table, "Cadence Planning" workflow section, cadence checking integration pattern, `/policies/cadence-targets.yaml` in file structure).
+
+**Key features**
+
+- weekly platform frequency targets;
+- objective mix tracking for awareness/engagement/conversion/traffic/thought-leadership;
+- ISO week definition (Mon–Sun); workspace-scoped across campaigns and regular-social;
+- objective extraction from existing content metadata (no schema changes).
 
 ### [1.0.2] - 2026-01-12
 
-#### Added
+**New files**:
+
 - **Twitter/X Platform Support** for social content authoring
   - `tw-post` - Standard tweets (280 chars, 25K for Premium)
   - `tw-thread` - Multi-tweet threads for long-form storytelling
   - `tw-reply` - Reply tweets for engagement and conversation building
 - New resource: skills/social-authoring/resources/platform-content-structures-twitter.md
-#### Changed
+
+**Changes files**:
 - Updated skills/social-authoring/skill-manifest.yaml with Twitter platform and formats
 - Updated skills/content-scheduling/skill-manifest.yaml with Twitter scheduling support
 - Updated skills/social-authoring/resources/quick-reference.md with:

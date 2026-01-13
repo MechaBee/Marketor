@@ -193,11 +193,11 @@ get_unreleased_changes() {
     local changes=()
 
     while IFS= read -r line; do
-        if [[ "$line" =~ ^###[[:space:]]*\[Unreleased\] ]]; then
+        if [[ "$line" =~ "^###[[:space:]]*\\[Unreleased\\]" ]]; then
             in_unreleased=true
             continue
         fi
-        if [[ "$in_unreleased" == true && "$line" =~ ^###[[:space:]]*\[ ]]; then
+        if [[ "$in_unreleased" == true && "$line" =~ "^###[[:space:]]*\\[" ]]; then
             break
         fi
         if [[ "$in_unreleased" == true && -n "${line// }" ]]; then
@@ -272,7 +272,7 @@ update_changelog() {
     local in_unreleased=false
 
     while IFS= read -r line || [[ -n "$line" ]]; do
-        if [[ "$line" =~ ^###[[:space:]]*\[Unreleased\] ]]; then
+        if [[ "$line" =~ "^###[[:space:]]*\\[Unreleased\\]" ]]; then
             echo "$line" >> "$tmp_file"
             echo "- _No unreleased changes yet_" >> "$tmp_file"
             echo "" >> "$tmp_file"
@@ -282,7 +282,7 @@ update_changelog() {
         fi
 
         if [[ "$in_unreleased" == true ]]; then
-            if [[ "$line" =~ ^###[[:space:]]*\[ ]]; then
+            if [[ "$line" =~ "^###[[:space:]]*\\[" ]]; then
                 in_unreleased=false
                 echo "" >> "$tmp_file"
                 echo "$line" >> "$tmp_file"
