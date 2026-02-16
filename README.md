@@ -57,32 +57,27 @@ Once you find a workflow that works for you, you can easily prompt the agent to 
 All notable changes to this project will be documented in this section.
 
 ### [Unreleased]
+- _No unreleased changes yet_
 
+### [1.0.4] - 2026-02-16
 Refactor the existing `source-ingestion` skill into a broader `http-integrations` umbrella. Add WordPress REST publishing capability and a config-management capability to maintain `wordpress-sites.yaml`.
-
 ***Scope / Changes***
-
 1. Rename skill folder and registry entry:
 *   `marketor_main/scaffolding/_meta/skills/source-ingestion` → `marketor_main/scaffolding/_meta/skills/http-integrations`
 *   Update `skill-registry.yaml` (new `skill_id`, `path`, `category`)
 *   Update `workspace-structure.md` available skills list
 *   Update cross-skill reference in `instructions.md`
-
 2. Update skill definition:
 *   `skill-manifest.yaml` (new `skill_id` + tools + config paths)
 *   `instructions.md` (new scope + config guidance)
-
 3. Add WordPress publish capability:
 *   `upload-wordpress-post.md`
 *   Uses `http_request` tool + `auth_profile` from `http_auth_profiles.yaml`
-
 4. Add WordPress config management capability:
 *   `manage-wordpress-sites.md`
 *   Add/update entries in `wordpress-sites.yaml`
-
 5. Add template for site config:
 *   `wordpress-sites.yaml`
-
 
 ### [1.0.3] - 2026-01-13
 Cadence planning capabilities added to content-scheduling skill.
