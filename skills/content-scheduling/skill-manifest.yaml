@@ -1,7 +1,7 @@
 # Content Scheduling Skill Manifest
 
 skill_id: content-scheduling
-version: "1.0"
+version: "1.0.0"
 status: active
 
 description: |

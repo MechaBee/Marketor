@@ -1,8 +1,8 @@
 # Image Generation Skill Manifest
 
 skill_id: image-generation
-version: "2.0"
-status: beta
+version: "1.0.0"
+status: active
 
 description: |
   Generate AI images with optimized prompts using Five-Part Architecture
@@ -54,7 +54,6 @@ required_tools:
 optional_tools:
   - system_guides_read_operations
 
-useful_sub_agents: [content_processor]
 
 workspace_paths:
   media_guides: "/policies/media-generation/*.md"

@@ -1,8 +1,8 @@
 # Landing Page Authoring Skill Manifest
 
 skill_id: landing-page-authoring
-version: "1.0"
-status: beta
+version: "1.0.0"
+status: active
 
 description: |
   Generate and manage standalone product and service landing pages as markdown content.

@@ -25,7 +25,7 @@ See manifest for validation rules.
 
    * `campaigns/[name]/...` → campaign calendar at `campaigns/[name]/calendar.yaml`
    * `regular-social/...` → regular-social calendar, include `month_folder` field
-3. **Ensure master calendar registration** - add entry if missing
+3. **Ensure master calendar registration** - check `calendar/master-calendar.yaml` add entry if missing
 4. **Read calendar** - create from template if missing
 5. **Check conflicts**:
 
@@ -45,6 +45,29 @@ See manifest for validation rules.
 
 **User:** "Schedule the travel insurance post for November 15th at 10 AM on Facebook"
 
+**Example campaign calendar entry**
+```yaml
+posts:
+ - content_file: content-assets/social/facebook/fb-link-post/text_example_rev1.md
+   media_files:
+      - media/image_example_rev1.png
+   platform: facebook
+   format: fb-link-post
+   scheduled_date: "2025-11-15"
+   scheduled_time: "18:00"
+   timezone: "Europe/Budapest"
+   status: published
+# ...other entries
+```
+Notes: 
+- a single `posts` array for all posts regardless of the status
+- regadless of status we have `scheduled_date` and `scheduled_time` fields where both are required, and neither is a full datetime field
+- 
+
+**Mater calendar template**
+Check this to see the required master calendar format:
+`_meta/skills/content-scheduling/templates/master-calendar-template.yaml`
+
 **Response:**
 
 ```
@@ -59,4 +82,6 @@ Calendar: [file:campaigns/travel-campaign/calendar.yaml]
 Manual publishing required. After posting on Facebook, use mark_published.
 ```
 
+
+See `
 See `resources/schedule-post-examples.md` for conflict handling and edge cases.

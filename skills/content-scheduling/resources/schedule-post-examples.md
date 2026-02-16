@@ -4,6 +4,8 @@
 ## Essential content examples:
 
   Example: Draft post (content ready, not yet scheduled)
+```yaml
+  posts:
    - content_file: content-assets/social/instagram/ig-reel/text_example_rev1.md
      media_files:  # Optional - list of associated media files RELATIVE to the post file
        - media/video_example_rev1.mp4
@@ -38,7 +40,7 @@
      published_date: "2025-10-20T10:00:00Z"  # ISO 8601 - added when published
      platform_post_id: "li_123456789"  # User-provided platform ID
      platform_url: "https://linkedin.com/posts/123456789"  # User-provided URL
-
+```
 
 
 ## Essential scenarios showing non-obvious behavior. Basic scheduling is covered in the capability doc.

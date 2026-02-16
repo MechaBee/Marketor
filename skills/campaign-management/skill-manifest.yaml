@@ -1,8 +1,8 @@
 # Campaign Management Skill Manifest
 
 skill_id: campaign-management
-version: "1.0"
-status: beta
+version: "1.0.0"
+status: active
 
 description: |
   Manage the complete campaign lifecycle from idea registration to campaign creation,

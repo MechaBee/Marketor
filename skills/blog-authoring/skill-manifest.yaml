@@ -1,8 +1,8 @@
 # Blog Authoring Skill Manifest
 
 skill_id: blog-authoring
-version: "0.2"
-status: beta
+version: "1.0.0"
+status: active
 
 description: |
   Produce long-form marketing articles that align with campaign goals,

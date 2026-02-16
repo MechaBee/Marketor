@@ -17,8 +17,6 @@ Set up a brand workspace end-to-end: create the workspace, gather brand intellig
 
 **Foundational Research** – Deep brand research via `setup_brand_workspace` provides intelligence base for all downstream activities (campaigns, content, strategy).
 
-**Cost Transparency** – Only the deep research operation in `setup_brand_workspace` has visible cost (around 1USD). Always warn users before executing.
-
 **Workspace Artifacts** – Generated knowledge lives under `/knowledge/`, campaigns under `/campaigns/`, strategy under `/policies/`.
 
 ## Standard Workflow
@@ -51,12 +49,12 @@ Use when workspace and research already exist but strategy needs updating.
 - `create_workspace_operations` – Provision new workspaces and scaffold defaults
 - `workspace_read_operations` – Inspect existing structure, verify artifacts, list workspaces
 - `workspace_write_operations` – Persist research and strategy files (indirectly via tools)
-- `openai_deep_research` – Execute comprehensive brand intelligence gathering (cca 1USD cost)
+- `openai_deep_research` – Execute comprehensive brand intelligence gathering
 
 ## Best Practices
 
 1. **Always start with `setup_brand_workspace`** for new brands - establishes complete foundation in one step
-2. **Get explicit cost confirmation** before running deep research (cca 1USD)
+2. **Get explicit confirmation** before running deep research
 3. **Verify workspace existence** using `workspace_read_operations(operation="list")` when uncertain
 4. **Recommend dedicated workspaces** - one brand per workspace, avoid 'default' for production
 5. **Capture brand objectives conversationally** during workspace setup - don't skip this step

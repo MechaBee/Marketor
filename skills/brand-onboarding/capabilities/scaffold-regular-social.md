@@ -76,23 +76,44 @@ calendar_version: "1.0"
 last_updated: "[CURRENT_DATE]"
 campaign_id: "regular-social"
 
-# Scheduled posts organized by month folders and evergreen content
-scheduled_posts:
-  # Example entry structure:
-  # 2025-M01/fb-link-post/text_home-insurance-winter_rev1.md:
+posts:
+  # Scheduled posts organized by month folders and evergreen content
+  # Example: Draft post (content ready, not yet scheduled)
+  # - content_file: content-assets/social/instagram/ig-reel/text_example_rev1.md
+  #   media_files:  # Optional - list of associated media files RELATIVE to the post file
+  #     - media/video_example_rev1.mp4
+  #   platform: instagram  # facebook | instagram | google | linkedin
+  #   format: ig-reel  # Platform-specific format (fb-link-post, ig-reel, g-search, etc.)
+  #   scheduled_date: "2025-11-01"  # YYYY-MM-DD
+  #   scheduled_time: "10:00"  # HH:MM (24-hour format)
+  #   timezone: "Europe/Budapest"  # IANA timezone identifier
+  #   status: draft  # draft | scheduled | published | failed
+
+  # Example: Scheduled post (ready for manual publishing)
+  # - content_file: content-assets/social/facebook/fb-link-post/text_example_rev1.md
+  #   media_files:
+  #     - media/image_example_rev1.png
   #   platform: facebook
   #   format: fb-link-post
-  #   scheduled_date: "2025-01-15"
-  #   scheduled_time: "10:00"
+  #   scheduled_date: "2025-11-15"
+  #   scheduled_time: "18:00"
   #   timezone: "Europe/Budapest"
   #   status: scheduled
-  #   media_files:
-  #     - 2025-M01/fb-link-post/image_home-insurance-winter_rev1.png
-  #   month_folder: "2025-M01"
 
-# Published posts archive
-published_posts:
-  # Posts move here after publication with published_date and platform_post_id
+  # Example: Published post (user reported successful manual publish)
+  # - content_file: content-assets/social/linkedin/li-post/text_example_rev1.md
+  #   media_files:
+  #     - media/image_example_rev1.png
+  #   platform: linkedin
+  #   format: li-post
+  #   scheduled_date: "2025-10-20"
+  #   scheduled_time: "10:00"
+  #   timezone: "Europe/Budapest"
+  #   status: published
+  #   published_date: "2025-10-20T10:00:00Z"  # ISO 8601 - added when published
+  #   platform_post_id: "li_123456789"  # User-provided platform ID
+  #   platform_url: "https://linkedin.com/posts/123456789"  # User-provided URL
+
 
 # Notes:
 # - All file paths are relative to /regular-social/

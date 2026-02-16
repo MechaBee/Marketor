@@ -1,6 +1,6 @@
 # Content Authoring Skill Manifest
 skill_id: social-authoring
-version: "1.0"
+version: "1.0.0"
 status: active
 
 description: |
@@ -58,7 +58,7 @@ required_tools:
   - workspace_write_operations
 
 useful_sub_agents:
-  - content_processor is required for authoring
+  - prefer direct authoring instead of delegating to sub agent
 
 optional_tools:
   - generate_image_google_ai

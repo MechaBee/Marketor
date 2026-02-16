@@ -2,7 +2,7 @@
 # Master registry of all available skills in the workspace
 
 registry_version: "2.0"
-last_updated: "2025-12-13"
+last_updated: "2026-02-06"
 
 skills:
   # === WORKSPACE LIFECYCLE ===
@@ -15,6 +15,17 @@ skills:
     description: |
       Complete brand workspace setup including directory structure, deep brand
       research, marketing plan generation, and regular social scaffolding.
+
+  - skill_id: forms-management
+    skill_path: _meta/skills/forms-management
+    manifest_file: _meta/skills/forms-management/skill-manifest.yaml
+    version: "0.1"
+    status: beta
+    category: workspace
+    description: |
+      Manage YAML form descriptors and workspace-native submission lifecycle,
+      including form:// references, section persistence, completion state,
+      and submission index tracking.
 
   # === CONTENT AUTHORING ===
   - skill_id: social-authoring
@@ -61,14 +72,15 @@ skills:
       Generate AI images with optimized prompts and documentation.
 
   # === KNOWLEDGE MANAGEMENT ===
-  - skill_id: source-ingestion
-    skill_path: _meta/skills/source-ingestion
-    manifest_file: _meta/skills/source-ingestion/skill-manifest.yaml
+  - skill_id: http-integrations
+    skill_path: _meta/skills/http-integrations
+    manifest_file: _meta/skills/http-integrations/skill-manifest.yaml
     version: "1.0"
     status: beta
-    category: knowledge
+    category: integrations
     description: |
-      Ingest and summarize external URLs and documents into workspace knowledge.
+      HTTP-based integrations for ingesting external sources and publishing content
+      to connected platforms such as WordPress.
 
   # === CAMPAIGN OPERATIONS ===
   - skill_id: campaign-management
@@ -91,6 +103,18 @@ skills:
     description: |
       Manage content post scheduling, publishing, and calendar maintenance
       across campaigns and platforms.
+
+  # === AUTOMATION ===
+  - skill_id: n8n-workflows
+    skill_path: _meta/skills/n8n-workflows
+    manifest_file: _meta/skills/n8n-workflows/skill-manifest.yaml
+    version: "1.0"
+    status: beta
+    category: automation
+    description: |
+      Manage n8n workflow automation including execution via webhooks,
+      downloading/uploading workflow definitions, validation, and
+      maintaining workflow invocation metadata.
 
 
 # Skill Lifecycle States:

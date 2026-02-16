@@ -1,7 +1,7 @@
 # Brand Onboarding Skill Manifest
 
 skill_id: brand-onboarding
-version: "2.0"
+version: "1.0.0"
 status: active
 
 description: |
@@ -13,7 +13,7 @@ capabilities:
   setup_brand_workspace:
     description: |
       Complete workspace setup including directory structure, deep brand
-      research (cca 1USD), brand objectives gathering, and readiness validation.
+      research (about 15 minutes), brand objectives gathering, and readiness validation.
       Combines workspace creation, vendor intelligence, and onboarding.
     instruction_file: capabilities/setup-brand-workspace.md
     required_params:
@@ -29,7 +29,7 @@ capabilities:
       - "setup.*brand"
       - "initialize.*workspace"
       - "new.*workspace.*for"
-    cost_warning: "Deep research operation costs cca 1USD"
+
 
   create_marketing_plan:
     description: |

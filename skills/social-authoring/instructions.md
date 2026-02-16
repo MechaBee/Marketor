@@ -148,7 +148,7 @@ Content body follows platform-specific templates:
    - Ensure parent directories exist
 
 4. **Content Generation**
-   - Delegate to content_processor sub-agent
+   - Author content according to best practices, user- and skill based instructions
    - Include content template reference
    - Specify all metadata requirements
    - Provide source materials and policies
@@ -176,8 +176,8 @@ For formats requiring visuals:
 "This format typically includes images. Shall I generate the visual assets?"
 ```
 
-### With Source Ingestion
-For external sources (FAQs, product docs, competitor pages), use `source-ingestion` to capture summaries into workspace knowledge before drafting.
+### With HTTP Integrations
+For external sources (FAQs, product docs, competitor pages), use `http-integrations` to capture summaries into workspace knowledge before drafting.
 
 ## Best Practices
 

@@ -45,7 +45,7 @@ Create the minimal calendar assets required by scheduling skills. Do not overwri
 
 ### 3. Execute Deep Research
 
-**PLEASE CONFIRM WITH HUMAN USER**: Deep research uses `openai_deep_research` tool which could cost around $1 USD and is a long-running process. Always notify user and get explicit confirmation before proceeding. User can ease on the cost by selecting the model (o4-mini-deep-research)
+**PLEASE CONFIRM WITH HUMAN USER**: Deep research uses `openai_deep_research` tool which is a long-running process. Always notify user and get explicit confirmation before proceeding. User can ease on the cost by selecting the model (o4-mini-deep-research)
 
 #### 3a. Plan the Research
 - Load research instruction template: `/_meta/skills/brand-onboarding/templates/brand-research-instruction-template.md`
@@ -61,27 +61,17 @@ Create the minimal calendar assets required by scheduling skills. Do not overwri
   - Summary & strategic recommendations
 
 #### 3b. Execute Research Tool
-- **Get user confirmation** for cca 1USD cost
+- **Get user confirmation**
 - Execute `openai_deep_research` tool with:
   - Source URL: `source_url`
   - Research instructions: Based on template structure
   - model: use `o3-deep-research` for better results with `medium` effort.
   - Output format: Comprehensive markdown following template sections
-- Monitor process (research may take several minutes)
+  - set research output to `/knowledge/brand-research.md`
+- research may take several minutes
+- Add this action only after you see in the dialog that the customer confirmed the request.
+- The tool will save the research to the output you requested upon completion.
 
-#### 3c. Store Research Results
-- Write research output to `/knowledge/brand-research.md`
-- **File structure**: Include executive summary at top for quick reference:
-  ```markdown
-  # [Brand Name] - Brand Research Profile
-
-  ## Executive Summary
-  [3-5 key takeaways about brand, audience, opportunities]
-
-  ## I. Core Business & Company Overview
-  [Detailed research sections following template...]
-  ```
-- Verify file was written successfully
 
 ### 4. Gather Brand Objectives (Conversational)
 
@@ -223,6 +213,6 @@ Use: create_marketing_plan
   - `openai_deep_research` - Execute comprehensive brand research
   - `workspace_write_operations` - Store research results (indirectly via tool)
 - **Referenced Files**:
-  - Input: `templates/brand-research-instruction-template.md`
+  - Input: `/_meta/skills/brand-onboarding/templates/brand-research-instruction-template.md`
   - Output: `/knowledge/brand-research.md`
   - Context: `/policies/digital-marketing-plan.md` (if exists)

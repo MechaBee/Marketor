@@ -65,13 +65,11 @@ Read:
 
 ### 5. Delegate to Content Processor
 
-Pass comprehensive instructions to `content_processor` sub-agent with:
-- All parameters and requirements
-- Source materials (files and URLs)
+Explore source material and build up a proper context for generating the new post with:
+- Source materials
 - Policy documents
-- Template structure
+- Templates if applicable
 - Platform-specific requirements
-  - include appropriate "Platform specific guides" workspace file reference
 
 ### 6. Validate Generated Content
 
@@ -158,7 +156,6 @@ Check metadata completeness, structure compliance, CTA presence before confirmin
 [Constructs path: campaigns/summer-travel/content-assets/social/facebook/fb-link-post/]
 [Checks no existing content]
 [Reads policies and strategies]
-[Delegates to content_processor]
 [Validates generated content]
 
 ✅ Social media content created!

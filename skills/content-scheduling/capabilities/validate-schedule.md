@@ -9,6 +9,7 @@ Check calendar integrity, detect errors and conflicts.
 ## Validation Checks
 
 **Errors (must fix):**
+- Check the existance and registration of campaign calendar in master calendar
 - Campaign Calendar is not registered in master calendar
 - Content/media files missing
 - Invalid date/time/platform/format values
@@ -59,3 +60,7 @@ Warnings:
 - Always include `[file:path]` references for navigation
 
 See `resources/validate-schedule-examples.md` for error scenarios.
+
+See the required master calendar format in:
+`_meta/skills/content-scheduling/templates/master-calendar-template.yaml`
+
