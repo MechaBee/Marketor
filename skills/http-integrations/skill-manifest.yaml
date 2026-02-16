@@ -1,0 +1,86 @@
+# HTTP Integrations Skill Manifest
+
+skill_id: http-integrations
+version: "1.0.0"
+status: active
+
+description: |
+  HTTP-based integrations for ingesting external sources and publishing
+  content to connected platforms such as WordPress.
+
+capabilities:
+  summarize_external_source:
+    description: Ingest and summarize external URLs or documents into workspace knowledge.
+    instruction_file: capabilities/summarize-external-source.md
+    required_params:
+      - source_url
+      - target_path
+    optional_params:
+      - summary_style
+      - sections_of_interest
+    trigger_patterns:
+      - "summarize.*url"
+      - "ingest.*article"
+      - "capture.*website.*info"
+      - "add.*source.*to.*knowledge"
+  upload_wordpress_post:
+    description: Publish a WordPress post via the REST API.
+    instruction_file: capabilities/upload-wordpress-post.md
+    required_params:
+      - title
+      - content
+    optional_params:
+      - site_name
+      - posts_url
+      - auth_profile
+      - status
+      - excerpt
+      - slug
+      - categories
+      - tags
+      - featured_media
+      - output_path
+      - workspace_id
+    trigger_patterns:
+      - "publish.*wordpress"
+      - "upload.*wordpress"
+      - "post.*wordpress"
+      - "wordpress.*post"
+      - "send.*to.*wordpress"
+  manage_wordpress_sites:
+    description: Add or update WordPress site configuration entries.
+    instruction_file: capabilities/manage-wordpress-sites.md
+    required_params:
+      - site_name
+    optional_params:
+      - posts_url
+      - auth_profile
+      - default_status
+      - action
+    trigger_patterns:
+      - "add.*wordpress.*site"
+      - "update.*wordpress.*site"
+      - "modify.*wordpress.*site"
+      - "configure.*wordpress.*site"
+      - "wordpress.*site.*config"
+
+required_tools:
+  - workspace_read_operations
+  - workspace_write_operations
+  - http_request
+
+optional_tools:
+  - system_guides_read_operations
+  - web_ingest_operations
+
+workspace_paths:
+  knowledge_root: "/campaigns/[campaign-name]/knowledge/"
+  general_knowledge: "/knowledge/"
+  wordpress_sites_config: "_meta/wordpress-sites.yaml"
+
+validation_rules:
+  output_format: "markdown"
+  required_sections:
+    - source_url
+    - summary
+    - key_points

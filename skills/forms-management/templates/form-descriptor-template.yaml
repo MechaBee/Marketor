@@ -1,0 +1,27 @@
+id: "example-form"
+version: "1.0"
+title: "Example Form"
+description: "Describe the purpose of this form."
+
+submission:
+  storage_root: "data/forms/{form_id}/submissions"
+  lifecycle:
+    mode: "resume_latest"
+    max_in_progress: 1
+  id:
+    prefix: "sub"
+    scheme: "timestamp_seq"
+
+sections:
+  - id: "general"
+    title: "General"
+    description: "Collect basic details."
+    questions:
+      - id: "full_name"
+        type: "text"
+        label: "Full name"
+        required: true
+      - id: "contact_email"
+        type: "text"
+        label: "Email"
+        required: true

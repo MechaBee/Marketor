@@ -1,0 +1,125 @@
+id: "customer-intake"
+version: "1.0"
+title: "Customer Intake Form"
+description: "Collect initial customer profile, needs, and consent before campaign kickoff."
+
+submission:
+  storage_root: "data/forms/{form_id}/submissions"
+  lifecycle:
+    mode: "resume_latest"
+    max_in_progress: 1
+  id:
+    prefix: "sub"
+    scheme: "timestamp_seq"
+
+sections:
+  - id: "contact-details"
+    title: "Contact Details"
+    description: "Basic identity and communication information."
+    questions:
+      - id: "full_name"
+        type: "text"
+        label: "Full name"
+        required: true
+      - id: "email"
+        type: "text"
+        label: "Email address"
+        required: true
+      - id: "phone"
+        type: "text"
+        label: "Phone number"
+        required: false
+      - id: "preferred_contact_method"
+        type: "select"
+        label: "Preferred contact method"
+        required: true
+        options:
+          - "email"
+          - "phone"
+          - "whatsapp"
+
+  - id: "business-context"
+    title: "Business Context"
+    description: "Business profile and current marketing baseline."
+    questions:
+      - id: "company_name"
+        type: "text"
+        label: "Company name"
+        required: true
+      - id: "industry"
+        type: "select"
+        label: "Primary industry"
+        required: true
+        options:
+          - "insurance"
+          - "travel"
+          - "ecommerce"
+          - "saas"
+          - "other"
+      - id: "monthly_marketing_budget"
+        type: "number"
+        label: "Monthly marketing budget (EUR)"
+        required: true
+        min: 0
+        max: 1000000
+      - id: "current_channels"
+        type: "multi_select"
+        label: "Current active channels"
+        required: false
+        options:
+          - "facebook"
+          - "instagram"
+          - "linkedin"
+          - "google_ads"
+          - "seo"
+          - "email"
+      - id: "launch_deadline"
+        type: "date"
+        label: "Target launch date"
+        required: false
+
+  - id: "goals-and-priorities"
+    title: "Goals and Priorities"
+    description: "Success criteria and strategic focus."
+    questions:
+      - id: "primary_goal"
+        type: "select"
+        label: "Primary business goal"
+        required: true
+        options:
+          - "lead_generation"
+          - "sales_growth"
+          - "brand_awareness"
+          - "retention"
+      - id: "success_kpi"
+        type: "textarea"
+        label: "How should success be measured?"
+        required: true
+        helpText: "Example: CPL under 20 EUR, 100 qualified leads/month"
+      - id: "urgency_score"
+        type: "rating"
+        label: "Urgency (1 = low, 5 = critical)"
+        required: true
+        min: 1
+        max: 5
+      - id: "needs_weekly_reporting"
+        type: "boolean"
+        label: "Do you need weekly reporting updates?"
+        required: true
+
+  - id: "legal-and-consent"
+    title: "Legal and Consent"
+    description: "Permissions and processing consent for project onboarding."
+    questions:
+      - id: "consent_data_processing"
+        type: "boolean"
+        label: "I consent to processing business contact data for onboarding"
+        required: true
+      - id: "consent_marketing_contact"
+        type: "boolean"
+        label: "I agree to receive onboarding-related communication"
+        required: true
+      - id: "notes"
+        type: "textarea"
+        label: "Additional notes"
+        required: false

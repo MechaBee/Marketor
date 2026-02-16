@@ -1,0 +1,31 @@
+# Invocation Infoset Template
+# Copy this template to n8n/invocations/{workflow-name}-invocation.yaml
+
+# Required: Human-readable workflow name
+workflow_name: my-workflow
+
+# Optional: Description of what the workflow does
+description: |
+  Describe what this workflow does and when to use it.
+
+# Required: Execution configuration
+execution:
+  # Option 1: Full webhook URL
+  url: "https://your-n8n.example.com/webhook/my-workflow"
+  
+  # Option 2: Short path (requires api_base_url in n8n_config.yaml, managed outside of the workspace by the user)
+  # url_path: "my-workflow"
+
+# Optional: Document expected payload fields
+payload_schema:
+  fieldName:
+    type: string  # string | number | boolean | object | array
+    description: "What this field is for"
+    required: true  # or false
+
+# Optional: Sample payload for reference
+# example_payload:
+#   fieldName: "example value"
+
+# Optional: Execution mode (defaults to poll if not specified)
+# async_mode: poll  # poll | fire_and_forget

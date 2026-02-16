@@ -1,0 +1,14 @@
+# WordPress Sites Config Template
+# Copy this file to _meta/wordpress-sites.yaml and fill in your sites.
+
+sites:
+  main-site:
+    posts_url: "https://your-site.com/wp-json/wp/v2/posts"
+    auth_profile: "wordpress-main"
+    default_status: "draft"  # draft | publish | pending | private
+
+# Add more sites as needed:
+#  marketing-blog:
+#    posts_url: "https://blog.example.com/wp-json/wp/v2/posts"
+#    auth_profile: "wordpress-blog"
+#    default_status: "publish"

@@ -1,0 +1,147 @@
+# n8n Workflows Skill Manifest
+
+skill_id: n8n-workflows
+version: "0.0.1"
+status: beta
+
+description: |
+  Manage n8n workflow automation including execution via webhooks,
+  downloading/uploading workflow definitions, validation, and
+  maintaining workflow invocation metadata.
+  
+  IMPORTANT: This skill requires the n8n_workflow tool to be enabled.
+  Upload/download operations require user-level settings in n8n_config.yaml
+  (api_base_url and api_key), which the user manages via UI "Agent Settings" tab (not visible in the Agent Workspace sandbox).
+
+capabilities:
+  execute_workflow:
+    description: Execute an n8n workflow via webhook URL or invocation file
+    instruction_file: capabilities/execute-workflow.md
+    required_params: []
+    optional_params:
+      - workflow_url
+      - invocation_file
+      - payload
+      - async_mode
+    trigger_patterns:
+      - "run.*n8n.*workflow"
+      - "execute.*workflow"
+      - "call.*n8n"
+      - "trigger.*workflow"
+
+  check_job_status:
+    description: Check status of an async n8n workflow job
+    instruction_file: capabilities/check-job-status.md
+    required_params:
+      - job_id
+    optional_params: []
+    trigger_patterns:
+      - "check.*n8n.*status"
+      - "workflow.*job.*status"
+      - "is.*workflow.*done"
+
+  download_workflow:
+    description: Download a workflow definition from n8n instance or external URL to staging
+    instruction_file: capabilities/download-workflow.md
+    required_params: []
+    optional_params:
+      - workflow_id
+      - source_url
+      - output_path
+      - exclude_pinned_data
+      - auth_profile
+      - headers
+    trigger_patterns:
+      - "download.*n8n.*workflow"
+      - "fetch.*workflow"
+      - "get.*workflow.*from.*n8n"
+      - "download.*workflow.*from.*url"
+      - "fetch.*workflow.*from.*github"
+
+  validate_workflow:
+    description: Validate a workflow JSON before upload to n8n
+    instruction_file: capabilities/validate-workflow.md
+    required_params:
+      - workflow_path
+    optional_params: []
+    trigger_patterns:
+      - "validate.*n8n.*workflow"
+      - "check.*workflow.*valid"
+      - "verify.*workflow"
+
+  upload_workflow:
+    description: Upload a validated workflow JSON to n8n instance
+    instruction_file: capabilities/upload-workflow.md
+    required_params:
+      - workflow_path
+    optional_params: []
+    trigger_patterns:
+      - "upload.*n8n.*workflow"
+      - "deploy.*workflow"
+      - "push.*workflow.*to.*n8n"
+
+  register_invocation:
+    description: Create or update an invocation infoset for a workflow
+    instruction_file: capabilities/register-invocation.md
+    required_params:
+      - workflow_name
+    optional_params:
+      - url
+      - url_path
+      - payload_schema
+      - description
+      - example_payload
+      - async_mode
+    trigger_patterns:
+      - "register.*n8n.*invocation"
+      - "create.*invocation.*info"
+      - "setup.*workflow.*execution"
+
+required_tools:
+  - n8n_workflow
+  - workspace_read_operations
+  - workspace_write_operations
+
+optional_tools: []
+
+workspace_paths:
+  outputs: "n8n/outputs/"
+  staging: "n8n/staging/"
+  authoring: "n8n/authoring/"
+  invocations: "n8n/invocations/"
+
+validation_rules:
+  async_modes:
+    - poll
+    - fire_and_forget
+  default_async_mode: poll
+  workflow_required_fields:
+    - name
+    - nodes
+    - connections
+    - settings
+  workflow_readonly_fields:
+    - id
+    - active
+    - createdAt
+    - updatedAt
+    - tags
+    - activeVersion
+  workflow_export_only_fields:
+    - pinData
+    - versionId
+    - meta
+
+## Workspace Structure
+
+# 
+# n8n/
+# ├── outputs/              # Response JSONs from executions
+# │   └── {job_id}.json
+# ├── staging/              # Workflow definitions from any source
+# │   └── {name}.json       # (n8n API, GitHub, manual download)
+# ├── authoring/            # Workflows being edited/created
+# │   └── {name}.json
+# └── invocations/          # Execution configuration files
+#     └── {name}-invocation.yaml
+# 

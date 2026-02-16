@@ -1,0 +1,166 @@
+# Forms Management Skill Manifest
+
+skill_id: forms-management
+version: "0.1.0"
+status: beta
+
+description: |
+  Manage workspace forms end-to-end with direct file operations.
+  Supports descriptor authoring, form:// reference generation,
+  submission lifecycle handling, section persistence, completion,
+  and submission listing without external API dependency.
+
+capabilities:
+  initialize_forms_workspace:
+    description: Ensure forms and form-data root folders exist in the workspace
+    instruction_file: capabilities/initialize-forms-workspace.md
+    required_params: []
+    optional_params: []
+    trigger_patterns:
+      - "initialize.*forms.*workspace"
+      - "setup.*forms.*folder"
+      - "prepare.*forms.*storage"
+
+  create_form_descriptor:
+    description: Create a new YAML form descriptor at /forms/{form-id}.yaml
+    instruction_file: capabilities/create-form-descriptor.md
+    required_params:
+      - form_id
+    optional_params:
+      - title
+      - description
+      - section_definitions
+      - lifecycle_mode
+      - max_in_progress
+      - submission_id_prefix
+    trigger_patterns:
+      - "create.*form"
+      - "new.*form.*descriptor"
+      - "define.*form.*schema"
+
+  update_form_descriptor:
+    description: Update an existing form descriptor with validated changes
+    instruction_file: capabilities/update-form-descriptor.md
+    required_params:
+      - form_id
+    optional_params:
+      - title
+      - description
+      - section_definitions
+      - lifecycle_mode
+      - max_in_progress
+      - submission_id_prefix
+    trigger_patterns:
+      - "update.*form"
+      - "modify.*form.*descriptor"
+      - "edit.*form.*schema"
+
+  open_form_reference:
+    description: Emit a clickable form:// workspace reference for chat UI integration
+    instruction_file: capabilities/open-form-reference.md
+    required_params:
+      - form_id
+    optional_params: []
+    trigger_patterns:
+      - "open.*form"
+      - "form://"
+      - "share.*form.*reference"
+
+  start_submission:
+    description: Start or resume form submission according to descriptor lifecycle rules
+    instruction_file: capabilities/start-submission.md
+    required_params:
+      - form_id
+    optional_params:
+      - case_id
+      - force_new
+    trigger_patterns:
+      - "start.*form.*submission"
+      - "begin.*form"
+      - "resume.*form.*submission"
+
+  save_section:
+    description: Validate and persist one section answer payload for a submission
+    instruction_file: capabilities/save-section.md
+    required_params:
+      - form_id
+      - submission_id
+      - section_id
+      - answers
+    optional_params:
+      - case_id
+    trigger_patterns:
+      - "save.*form.*section"
+      - "submit.*section"
+      - "update.*section.*answers"
+
+  complete_submission:
+    description: Mark a submission completed in both meta and index files
+    instruction_file: capabilities/complete-submission.md
+    required_params:
+      - form_id
+      - submission_id
+    optional_params: []
+    trigger_patterns:
+      - "complete.*form.*submission"
+      - "finalize.*submission"
+      - "close.*form"
+
+  list_submissions:
+    description: List and filter submissions from submissions-index.yaml
+    instruction_file: capabilities/list-submissions.md
+    required_params:
+      - form_id
+    optional_params:
+      - status
+      - date_from
+      - date_to
+      - limit
+    trigger_patterns:
+      - "list.*form.*submissions"
+      - "show.*submission.*history"
+      - "submission.*status"
+
+required_tools:
+  - workspace_read_operations
+  - workspace_write_operations
+
+optional_tools: []
+
+workspace_paths:
+  forms_root: "/forms/"
+  form_descriptors: "/forms/*.yaml"
+  submissions_root: "/data/forms/[form-id]/submissions/"
+  submission_index: "/data/forms/[form-id]/submissions/submissions-index.yaml"
+  submission_meta: "/data/forms/[form-id]/submissions/[submission-id]/meta.yaml"
+  submission_section: "/data/forms/[form-id]/submissions/[submission-id]/[section-id].yaml"
+
+validation_rules:
+  safe_id_restrictions:
+    reject_chars:
+      - "/"
+      - "\\"
+    reject_sequences:
+      - ".."
+  allowed_question_types:
+    - text
+    - textarea
+    - number
+    - boolean
+    - select
+    - multi_select
+    - date
+    - rating
+  lifecycle_modes:
+    - resume_latest
+    - always_new
+  max_in_progress:
+    allowed: "positive integer or unlimited"
+    default: 1
+  default_lifecycle:
+    mode: resume_latest
+    max_in_progress: 1
+  submission_id:
+    scheme: timestamp_seq
+    pattern: "{prefix}_YYYYMMDD_HHMMSS_NNN"
+    default_prefix: sub

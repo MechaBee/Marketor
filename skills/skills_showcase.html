@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketor AI – what Marketor Skills can do</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        :root {
+            --bg: #f8f9fc;
+            --surface: #ffffff;
+            --border: #e4e7ee;
+            --text: #1e2330;
+            --text-2: #5a6178;
+            --accent: #6366f1;
+            --accent-soft: #eef2ff;
+            --tag-bg: #f1f5f9;
+            --tag-text: #475569;
+            --section-line: #dfe3ec;
+            --shadow: 0 1px 3px rgba(0, 0, 0, .04), 0 1px 2px rgba(0, 0, 0, .03);
+            --shadow-hover: 0 4px 12px rgba(99, 102, 241, .10), 0 1px 3px rgba(0, 0, 0, .04);
+            --radius: 12px;
+        }
+
+        html {
+            font-size: 15px
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+            padding: 0;
+        }
+
+        /* ── layout container ── */
+        .showcase {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 32px 24px 48px;
+        }
+
+        /* ── header ── */
+        .header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .header h1 {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 6px;
+            letter-spacing: -.02em;
+        }
+
+        .header p {
+            font-size: .92rem;
+            color: var(--text-2);
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* ── section dividers ── */
+        .section {
+            margin-bottom: 32px
+        }
+
+        .section-title {
+            font-size: .78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--accent);
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--section-line);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title .icon {
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        /* ── card grid ── */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
+            gap: 12px;
+        }
+
+        /* ── card ── */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            transition: box-shadow .2s ease, border-color .2s ease, transform .15s ease;
+            cursor: default;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .card-title {
+            font-size: .88rem;
+            font-weight: 600;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .card-title .emoji {
+            font-size: 1.05rem;
+            line-height: 1;
+            flex-shrink: 0
+        }
+
+        .card-desc {
+            font-size: .8rem;
+            color: var(--text-2);
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 4px;
+        }
+
+        .tag {
+            font-size: .66rem;
+            font-weight: 500;
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            padding: 2px 8px;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .tag.beta {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* ── tip callout ── */
+        .tip {
+            background: var(--accent-soft);
+            border-radius: var(--radius);
+            padding: 14px 18px;
+            font-size: .82rem;
+            color: #4338ca;
+            line-height: 1.55;
+            margin-bottom: 28px;
+        }
+
+        .tip strong {
+            font-weight: 600
+        }
+
+        /* ── responsive ── */
+        @media(max-width:560px) {
+            .showcase {
+                padding: 20px 14px 36px
+            }
+
+            .grid {
+                grid-template-columns: 1fr
+            }
+
+            .header h1 {
+                font-size: 1.25rem
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="showcase">
+
+        <!-- Header -->
+        <div class="header">
+            <h1>What I can help you with</h1>
+            <p>Here's an overview of everything Marketor can do for you — just describe what you need in plain language.
+            </p>
+        </div>
+
+        <div class="tip">
+            <strong>💡 Tip:</strong> You don't need to remember any of this. Simply describe what you want and I'll
+            figure out the right steps. These cards are here so you know what's possible.
+        </div>
+
+        <!-- ═══ Getting Started ═══ -->
+        <div class="section">
+            <div class="section-title"><span class="icon">🚀</span> Getting Started</div>
+            <div class="grid">
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">🏗️</span> Set Up a Brand Workspace</div>
+                    <div class="card-desc">Create a full workspace for a brand — folder structure, deep research, and
+                        everything needed to start creating content.</div>
+                    <div class="card-tags"><span class="tag">~15 min deep research</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">📋</span> Marketing Plan</div>
+                    <div class="card-desc">Generate a comprehensive digital marketing strategy covering platform
+                        formats, principles, and campaign guidance.</div>
+                    <div class="card-tags"><span class="tag">strategy</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">🌐</span> Summarize a Source</div>
+                    <div class="card-desc">Ingest a URL or document and save a structured summary into your workspace
+                        knowledge base.</div>
+                    <div class="card-tags"><span class="tag">research</span></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ═══ Content Creation ═══ -->
+        <div class="section">
+            <div class="section-title"><span class="icon">✍️</span> Content Creation</div>
+            <div class="grid">
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">📱</span> Social Media Posts</div>
+                    <div class="card-desc">Write posts for Facebook, Instagram, LinkedIn, Twitter, and Google Ads — each
+                        in the right format for the platform.</div>
+                    <div class="card-tags"><span class="tag">meta</span><span class="tag">linkedin</span><span
+                            class="tag">twitter</span><span class="tag">google</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">📝</span> Blog Articles</div>
+                    <div class="card-desc">Draft SEO-optimized long-form articles (800–1 600 words) aligned with your
+                        campaign goals and brand voice.</div>
+                    <div class="card-tags"><span class="tag">SEO</span><span class="tag">long-form</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">💡</span> Blog Ideation</div>
+                    <div class="card-desc">Generate creative blog angle ideas from your product docs, web sources, or
+                        campaign knowledge.</div>
+                    <div class="card-tags"><span class="tag">brainstorming</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">🖥️</span> Landing Pages</div>
+                    <div class="card-desc">Create conversion-optimized landing page copy with modular sections — hero,
+                        benefits, features, CTA, and more.</div>
+                    <div class="card-tags"><span class="tag">product</span><span class="tag">service</span><span
+                            class="tag beta">beta</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">🔄</span> Edit Page Sections</div>
+                    <div class="card-desc">Tweak or optimize a specific section of an existing landing page without
+                        rewriting the whole thing.</div>
+                    <div class="card-tags"><span class="tag">revision</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">✅</span> Validate Posts</div>
+                    <div class="card-desc">Scan social posts for format compliance and auto-fix issues across a campaign
+                        or single file.</div>
+                    <div class="card-tags"><span class="tag">quality</span></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ═══ Visual Assets ═══ -->
+        <div class="section">
+            <div class="section-title"><span class="icon">🎨</span> Visual Assets</div>
+            <div class="grid">
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">🖼️</span> Generate Images</div>
+                    <div class="card-desc">Create AI-generated images with optimized prompts — standard or high-res,
+                        with platform-aware styling.</div>
+                    <div class="card-tags"><span class="tag">flash</span><span class="tag">pro</span><span
+                            class="tag beta">beta</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">🎯</span> Brand Visual Guidelines</div>
+                    <div class="card-desc">Create reusable brand-level image guidelines so every generated visual stays
+                        on-brand.</div>
+                    <div class="card-tags"><span class="tag">brand identity</span></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ═══ Campaigns & Scheduling ═══ -->
+        <div class="section">
+            <div class="section-title"><span class="icon">📅</span> Campaigns &amp; Scheduling</div>
+            <div class="grid">
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">💡</span> Register Campaign Idea</div>
+                    <div class="card-desc">Capture a new campaign concept with audience, key messages, and potential
+                        angles — before committing to it.</div>
+                    <div class="card-tags"><span class="tag">ideation</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">📂</span> Create Campaign</div>
+                    <div class="card-desc">Scaffold the full campaign folder structure from an idea — ready for content
+                        creation.</div>
+                    <div class="card-tags"><span class="tag">scaffold</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">📊</span> Update Campaign Summary</div>
+                    <div class="card-desc">Keep the campaign summary up to date with new content, status changes, and
+                        slug tracking.</div>
+                    <div class="card-tags"><span class="tag">tracking</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">📆</span> Schedule Posts</div>
+                    <div class="card-desc">Add content to the posting calendar with date, time, platform, and media
+                        attachments.</div>
+                    <div class="card-tags"><span class="tag">calendar</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">👀</span> Review Drafts</div>
+                    <div class="card-desc">Find unscheduled content across your campaigns and walk through a guided
+                        scheduling process.</div>
+                    <div class="card-tags"><span class="tag">workflow</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">📋</span> List Scheduled Posts</div>
+                    <div class="card-desc">View upcoming scheduled posts — filter by date range, platform, campaign, or
+                        status.</div>
+                    <div class="card-tags"><span class="tag">overview</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">✔️</span> Mark Published / Failed</div>
+                    <div class="card-desc">Record that a post was published or that publishing failed — keeps your
+                        calendar accurate.</div>
+                    <div class="card-tags"><span class="tag">tracking</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">⚙️</span> Posting Cadence</div>
+                    <div class="card-desc">Set weekly posting targets per platform and objective mix, then check
+                        progress reports.</div>
+                    <div class="card-tags"><span class="tag">goals</span><span class="tag">reporting</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">🔍</span> Validate Calendar</div>
+                    <div class="card-desc">Check the calendar for scheduling conflicts, missing data, and integrity
+                        issues.</div>
+                    <div class="card-tags"><span class="tag">quality</span></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ═══ Integrations & Automation ═══ -->
+        <div class="section">
+            <div class="section-title"><span class="icon">🔌</span> Integrations &amp; Automation</div>
+            <div class="grid">
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">📤</span> Publish to WordPress</div>
+                    <div class="card-desc">Push a blog post or page to a connected WordPress site via the REST API.
+                    </div>
+                    <div class="card-tags"><span class="tag">publishing</span><span class="tag beta">beta</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">🔧</span> Manage WP Sites</div>
+                    <div class="card-desc">Add, update, or configure WordPress site connections for publishing.</div>
+                    <div class="card-tags"><span class="tag">config</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">⚡</span> Run n8n Workflow</div>
+                    <div class="card-desc">Trigger any connected n8n automation workflow and get results — sync or
+                        async.</div>
+                    <div class="card-tags"><span class="tag">automation</span><span class="tag beta">beta</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">📥</span> Download / Upload Workflows</div>
+                    <div class="card-desc">Fetch workflow definitions from n8n or external URLs, validate, and push them
+                        back.</div>
+                    <div class="card-tags"><span class="tag">dev-ops</span><span class="tag beta">beta</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">📋</span> Register Workflow Invocation</div>
+                    <div class="card-desc">Set up reusable invocation config for a workflow — URL, payload schema, and
+                        mode.</div>
+                    <div class="card-tags"><span class="tag">config</span><span class="tag beta">beta</span></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ═══ Workspace Tools ═══ -->
+        <div class="section">
+            <div class="section-title"><span class="icon">🧰</span> Workspace Tools</div>
+            <div class="grid">
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">📄</span> Forms</div>
+                    <div class="card-desc">Create, fill out, and manage YAML-based forms — with sections, submissions,
+                        and lifecycle tracking.</div>
+                    <div class="card-tags"><span class="tag">data collection</span><span class="tag beta">beta</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">📁</span> Scaffold Regular Social</div>
+                    <div class="card-desc">Set up monthly folder structures for ongoing non-campaign social content.
+                    </div>
+                    <div class="card-tags"><span class="tag">organization</span></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title"><span class="emoji">📑</span> List Landing Pages</div>
+                    <div class="card-desc">See all landing pages in your workspace with their status and metadata at a
+                        glance.</div>
+                    <div class="card-tags"><span class="tag">overview</span></div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

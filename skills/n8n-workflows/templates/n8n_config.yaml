@@ -1,0 +1,16 @@
+# n8n Configuration Template
+# Copy this template to _meta/n8n_config.yaml and configure your settings.
+#
+# IMPORTANT: This file is managed by the user via UI "Agent Settings" tab.
+# The AI agent cannot read this file directly for security reasons,
+# but the n8n tool uses it when executing operations.
+
+# Required for upload/download operations
+api_base_url: "https://your-n8n.example.com"
+api_key: "your-n8n-api-key"
+
+# Optional: Restrict which webhook URLs can be executed
+# Uses glob patterns for matching
+allowed_url_patterns:
+  - "https://*.app.n8n.cloud/webhook*"
+  - "https://your-n8n.example.com/webhook*"
